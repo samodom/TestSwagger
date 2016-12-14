@@ -1,0 +1,12 @@
+PODS:
+  - FoundationSwagger (0.2.6)
+
+DEPENDENCIES:
+  - FoundationSwagger
+
+SPEC CHECKSUMS:
+  FoundationSwagger: 5ecfcc477b4b1b377323aed0504eb63f9515bbef
+
+PODFILE CHECKSUM: 6ed46a2d4cc975872b12934d8db500d3ecee290c
+
+COCOAPODS: 1.1.1
