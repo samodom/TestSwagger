@@ -1,3 +1,4 @@
+
 //
 //  SpyableTestCase.swift
 //  TestSwagger
@@ -14,7 +15,6 @@ import TestSwagger
 class SpyableTestCase: XCTestCase {
 
     let fileManager = FileManager.default
-    let sampleSpyable = SampleSpyable()
 
     let sampleStringEvidence = "Celiac cornhole vice vegan unicorn umami kale chips forage four dollar"
     var sampleDataEvidence: Data!
@@ -28,6 +28,8 @@ class SpyableTestCase: XCTestCase {
     private let sampleKeyString = UUIDKeyString()
     var sampleKey: ObjectAssociationKey!
 
+    let sampleSpyable = RootSwiftSpyable()
+
     override func setUp() {
         super.setUp()
 
@@ -37,7 +39,6 @@ class SpyableTestCase: XCTestCase {
         sampleEvidenceUrl = expectedEvidenceDirectoryUrl
             .appendingPathComponent(sampleEvidenceFilename, isDirectory: false)
         sampleKey = ObjectAssociationKey(sampleKeyString)
-
     }
 
     override func tearDown() {
