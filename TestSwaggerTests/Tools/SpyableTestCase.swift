@@ -28,7 +28,7 @@ class SpyableTestCase: XCTestCase {
     private let sampleKeyString = UUIDKeyString()
     var sampleKey: ObjectAssociationKey!
 
-    let sampleSpyable = RootSwiftSpyable()
+    let sampleSpyable = SwiftRootSpyable()
 
     override func setUp() {
         super.setUp()

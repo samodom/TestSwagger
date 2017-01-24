@@ -10,99 +10,115 @@ import XCTest
 
 class SampleSpyableTests: XCTestCase {
 
+    static let defaultMessage = "The spyable does not return the correct output"
     var spyableClasses: [AnyClass]!
+    var expectedMethodOutput: Int!
 
     func testRootSpyableMethods() {
-        XCTAssertEqual(RootSwiftSpyable.sampleMethod(""),
-                       RootMethodReturnValue)
-        XCTAssertEqual(RootSwiftSpyable().sampleMethod(""),
-                       RootMethodReturnValue)
+        expectedMethodOutput = NormalMethodReturnValueAtRoot
 
-        XCTAssertEqual(RootObjectiveCSpyable.sampleMethod(""),
-                       RootMethodReturnValue)
-        XCTAssertEqual(RootObjectiveCSpyable().sampleMethod(""),
-                       RootMethodReturnValue)
+        XCTAssertEqual(SwiftRootSpyable.sampleClassMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+        XCTAssertEqual(SwiftRootSpyable().sampleInstanceMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+
+        XCTAssertEqual(ObjectiveCRootSpyable.sampleClassMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+        XCTAssertEqual(ObjectiveCRootSpyable().sampleInstanceMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
     }
 
 
     //  Inheriting
 
-    func testFirstInheritingSpyableMethods() {
-        XCTAssertEqual(FirstInheritingSwiftSpyable.sampleMethod(""),
-                       RootMethodReturnValue)
-        XCTAssertEqual(FirstInheritingSwiftSpyable().sampleMethod(""),
-                       RootMethodReturnValue)
+    func testInheritorSpyableMethods() {
+        expectedMethodOutput = NormalMethodReturnValueAtRoot
 
-        XCTAssertEqual(FirstInheritingObjectiveCSpyable.sampleMethod(""),
-                       RootMethodReturnValue)
-        XCTAssertEqual(FirstInheritingObjectiveCSpyable().sampleMethod(""),
-                       RootMethodReturnValue)
+        XCTAssertEqual(SwiftInheritor.sampleClassMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+        XCTAssertEqual(SwiftInheritor().sampleInstanceMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+
+        XCTAssertEqual(ObjectiveCInheritor.sampleClassMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+        XCTAssertEqual(ObjectiveCInheritor().sampleInstanceMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
     }
 
-    func testSecondInheritingSpyableMethods() {
-        XCTAssertEqual(SecondInheritingSwiftSpyable.sampleMethod(""),
-                       RootMethodReturnValue)
-        XCTAssertEqual(SecondInheritingSwiftSpyable().sampleMethod(""),
-                       RootMethodReturnValue)
+    func testInheritorOfInheritorSpyableMethods() {
+        expectedMethodOutput = NormalMethodReturnValueAtRoot
 
-        XCTAssertEqual(SecondInheritingObjectiveCSpyable.sampleMethod(""),
-                       RootMethodReturnValue)
-        XCTAssertEqual(SecondInheritingObjectiveCSpyable().sampleMethod(""),
-                       RootMethodReturnValue)
+        XCTAssertEqual(SwiftInheritorOfInheritor.sampleClassMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+        XCTAssertEqual(SwiftInheritorOfInheritor().sampleInstanceMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+
+        XCTAssertEqual(ObjectiveCInheritorOfInheritor.sampleClassMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+        XCTAssertEqual(ObjectiveCInheritorOfInheritor().sampleInstanceMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
     }
 
 
     //  Overriding
 
-    func testFirstOverridingSpyableMethods() {
-        XCTAssertEqual(FirstOverridingSwiftSpyable.sampleMethod(""),
-                       FirstOverridingMethodReturnValue)
-        XCTAssertEqual(FirstOverridingSwiftSpyable().sampleMethod(""),
-                       FirstOverridingMethodReturnValue)
+    func testOverriderSpyableMethods() {
+        expectedMethodOutput = NormalMethodReturnValueOverridenAtLevel1
 
-        XCTAssertEqual(FirstOverridingObjectiveCSpyable.sampleMethod(""),
-                       FirstOverridingMethodReturnValue)
-        XCTAssertEqual(FirstOverridingObjectiveCSpyable().sampleMethod(""),
-                       FirstOverridingMethodReturnValue)
+        XCTAssertEqual(SwiftOverrider.sampleClassMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+        XCTAssertEqual(SwiftOverrider().sampleInstanceMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+
+        XCTAssertEqual(ObjectiveCOverrider.sampleClassMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+        XCTAssertEqual(ObjectiveCOverrider().sampleInstanceMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
     }
 
-    func testSecondOverridingSpyableMethods() {
-        XCTAssertEqual(SecondOverridingSwiftSpyable.sampleMethod(""),
-                       SecondOverridingMethodReturnValue)
-        XCTAssertEqual(SecondOverridingSwiftSpyable().sampleMethod(""),
-                       SecondOverridingMethodReturnValue)
+    func testOverriderOfOverriderSpyableMethods() {
+        expectedMethodOutput = NormalMethodReturnValueOverridenAtLevel2
 
-        XCTAssertEqual(SecondOverridingObjectiveCSpyable.sampleMethod(""),
-                       SecondOverridingMethodReturnValue)
-        XCTAssertEqual(SecondOverridingObjectiveCSpyable().sampleMethod(""),
-                       SecondOverridingMethodReturnValue)
+        XCTAssertEqual(SwiftOverriderOfOverrider.sampleClassMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+        XCTAssertEqual(SwiftOverriderOfOverrider().sampleInstanceMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+
+        XCTAssertEqual(ObjectiveCOverriderOfOverrider.sampleClassMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+        XCTAssertEqual(ObjectiveCOverriderOfOverrider().sampleInstanceMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
     }
 
 
     //  Hybrid
 
-    func testInheritingOverriderSpyableMethods() {
-        XCTAssertEqual(InheritingSwiftSpyableOverrider.sampleMethod(""),
-                       SecondOverridingMethodReturnValue)
-        XCTAssertEqual(InheritingSwiftSpyableOverrider().sampleMethod(""),
-                       SecondOverridingMethodReturnValue)
+    func testOverriderOfInheritorSpyableMethods() {
+        expectedMethodOutput = NormalMethodReturnValueOverridenAtLevel2
 
-        XCTAssertEqual(InheritingObjectiveCSpyableOverrider.sampleMethod(""),
-                       SecondOverridingMethodReturnValue)
-        XCTAssertEqual(InheritingObjectiveCSpyableOverrider().sampleMethod(""),
-                       SecondOverridingMethodReturnValue)
+        XCTAssertEqual(SwiftOverriderOfInheritor.sampleClassMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+        XCTAssertEqual(SwiftOverriderOfInheritor().sampleInstanceMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+
+        XCTAssertEqual(ObjectiveCOverriderOfInheritor.sampleClassMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+        XCTAssertEqual(ObjectiveCOverriderOfInheritor().sampleInstanceMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
     }
 
-    func testOverridingInheritorSpyableMethods() {
-        XCTAssertEqual(OverridingSwiftSpyableInheritor.sampleMethod(""),
-                       FirstOverridingMethodReturnValue)
-        XCTAssertEqual(OverridingSwiftSpyableInheritor().sampleMethod(""),
-                       FirstOverridingMethodReturnValue)
+    func testInheritorOfOverriderSpyableMethods() {
+        expectedMethodOutput = NormalMethodReturnValueOverridenAtLevel1
 
-        XCTAssertEqual(OverridingObjectiveCSpyableInheritor.sampleMethod(""),
-                       FirstOverridingMethodReturnValue)
-        XCTAssertEqual(OverridingObjectiveCSpyableInheritor().sampleMethod(""),
-                       FirstOverridingMethodReturnValue)
+        XCTAssertEqual(SwiftInheritorOfOverrider.sampleClassMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+        XCTAssertEqual(SwiftInheritorOfOverrider().sampleInstanceMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+
+        XCTAssertEqual(ObjectiveCInheritorOfOverrider.sampleClassMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
+        XCTAssertEqual(ObjectiveCInheritorOfOverrider().sampleInstanceMethod(""),
+                       expectedMethodOutput, SampleSpyableTests.defaultMessage)
     }
 
 }

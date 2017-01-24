@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		078DE40B19550576CDA3339B /* Pods_TestSwaggerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF247D166F409E2EE39E2878 /* Pods_TestSwaggerTests.framework */; };
+		0A6D9F7D1E2B3002002AAA4A /* ObjectiveCRootSpyableConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6D9F7C1E2B3002002AAA4A /* ObjectiveCRootSpyableConformance.swift */; };
 		0A90700C1E03964900DFF69B /* EvidencePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90700B1E03964900DFF69B /* EvidencePersistence.swift */; };
-		0A9070101E05BF5300DFF69B /* SwiftSpyables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90700F1E05BF5300DFF69B /* SwiftSpyables.swift */; };
-		0A9070131E05BF8600DFF69B /* ObjectiveCSpyables.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9070121E05BF8600DFF69B /* ObjectiveCSpyables.m */; };
 		0A9070161E05E94100DFF69B /* SampleSpyableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9070151E05E94100DFF69B /* SampleSpyableTests.swift */; };
+		0ABBD4111E2AE9DA00F6F194 /* ObjectiveCSpyables.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABBD4091E2AE9DA00F6F194 /* ObjectiveCSpyables.m */; };
+		0ABBD4121E2AE9DA00F6F194 /* SwiftSpyables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABBD40A1E2AE9DA00F6F194 /* SwiftSpyables.swift */; };
 		0AFFECED1DFE256100D4409C /* TestSwagger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFFECE31DFE256100D4409C /* TestSwagger.framework */; };
 		0AFFECF41DFE256100D4409C /* TestSwagger.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AFFECE61DFE256100D4409C /* TestSwagger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0AFFECFF1DFE262100D4409C /* SpyableEvidencePersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFECFE1DFE262100D4409C /* SpyableEvidencePersistenceTests.swift */; };
@@ -34,10 +35,7 @@
 
 /* Begin PBXFileReference section */
 		0A90700B1E03964900DFF69B /* EvidencePersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvidencePersistence.swift; sourceTree = "<group>"; };
-		0A90700F1E05BF5300DFF69B /* SwiftSpyables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpyables.swift; sourceTree = "<group>"; };
-		0A9070111E05BF8600DFF69B /* ObjectiveCSpyables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCSpyables.h; sourceTree = "<group>"; };
-		0A9070121E05BF8600DFF69B /* ObjectiveCSpyables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCSpyables.m; sourceTree = "<group>"; };
-		0A9070141E05C40600DFF69B /* TestSwaggerTests-Briding-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestSwaggerTests-Briding-Header.h"; sourceTree = "<group>"; };
+		0A9070141E05C40600DFF69B /* TestSwaggerTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestSwaggerTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A9070151E05E94100DFF69B /* SampleSpyableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleSpyableTests.swift; sourceTree = "<group>"; };
 		0AFFECE31DFE256100D4409C /* TestSwagger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TestSwagger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFFECE61DFE256100D4409C /* TestSwagger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestSwagger.h; sourceTree = "<group>"; };
@@ -78,6 +76,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0ABBD4051E2AE9DA00F6F194 /* Spyables */ = {
+			isa = PBXGroup;
+			children = (
+				0A6D9F7C1E2B3002002AAA4A /* ObjectiveCRootSpyableConformance.swift */,
+				0ABBD4081E2AE9DA00F6F194 /* ObjectiveCSpyables.h */,
+				0ABBD4091E2AE9DA00F6F194 /* ObjectiveCSpyables.m */,
+				0ABBD40A1E2AE9DA00F6F194 /* SwiftSpyables.swift */,
+			);
+			path = Spyables;
+			sourceTree = "<group>";
+		};
 		0AFFECD91DFE256100D4409C = {
 			isa = PBXGroup;
 			children = (
@@ -133,11 +142,7 @@
 		0AFFED001DFE268200D4409C /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				0A9070111E05BF8600DFF69B /* ObjectiveCSpyables.h */,
-				0A9070121E05BF8600DFF69B /* ObjectiveCSpyables.m */,
-				0AFFED0B1E00ECB800D4409C /* SpyableTestCase.swift */,
-				0A90700F1E05BF5300DFF69B /* SwiftSpyables.swift */,
-				0A9070141E05C40600DFF69B /* TestSwaggerTests-Briding-Header.h */,
+				0ABBD4051E2AE9DA00F6F194 /* Spyables */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -369,12 +374,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A9070101E05BF5300DFF69B /* SwiftSpyables.swift in Sources */,
 				0A9070161E05E94100DFF69B /* SampleSpyableTests.swift in Sources */,
 				0AFFED0A1E00EC5000D4409C /* SpyableGeneralEvidenceTests.swift in Sources */,
 				0AFFECFF1DFE262100D4409C /* SpyableEvidencePersistenceTests.swift in Sources */,
 				0AFFED0C1E00ECB800D4409C /* SpyableTestCase.swift in Sources */,
-				0A9070131E05BF8600DFF69B /* ObjectiveCSpyables.m in Sources */,
+				0ABBD4121E2AE9DA00F6F194 /* SwiftSpyables.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

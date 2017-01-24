@@ -16,9 +16,12 @@ class SpyableEvidencePersistenceTests: SpyableTestCase {
         sampleSpyable.persistDataEvidence(sampleDataEvidence, named: sampleEvidenceFilename)
 
         var isDirectory: ObjCBool = false
-        guard fileManager.fileExists(atPath: expectedEvidenceDirectoryUrl.path,
-                                     isDirectory: &isDirectory)
-            else {
+        let directoryExists = fileManager.fileExists(
+            atPath: expectedEvidenceDirectoryUrl.path,
+            isDirectory: &isDirectory
+        )
+
+        guard directoryExists else {
                 return XCTFail("The evidence directory should be created if it does not exist")
         }
 
