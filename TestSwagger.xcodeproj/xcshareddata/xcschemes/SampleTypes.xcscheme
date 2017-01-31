@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A2D45641E3AF1D600FC1C52"
+               BlueprintIdentifier = "0A2235DD1E4047540031BA61"
                BuildableName = "SampleTypes.framework"
                BlueprintName = "SampleTypes"
                ReferencedContainer = "container:TestSwagger.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A2D456C1E3AF1D600FC1C52"
+               BlueprintIdentifier = "0A2235E51E4047540031BA61"
                BuildableName = "SampleTypesTests.xctest"
                BlueprintName = "SampleTypesTests"
                ReferencedContainer = "container:TestSwagger.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0A2D45641E3AF1D600FC1C52"
+            BlueprintIdentifier = "0A2235DD1E4047540031BA61"
             BuildableName = "SampleTypes.framework"
             BlueprintName = "SampleTypes"
             ReferencedContainer = "container:TestSwagger.xcodeproj">
@@ -69,7 +69,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0A2D45641E3AF1D600FC1C52"
+            BlueprintIdentifier = "0A2235DD1E4047540031BA61"
             BuildableName = "SampleTypes.framework"
             BlueprintName = "SampleTypes"
             ReferencedContainer = "container:TestSwagger.xcodeproj">
@@ -87,7 +87,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0A2D45641E3AF1D600FC1C52"
+            BlueprintIdentifier = "0A2235DD1E4047540031BA61"
             BuildableName = "SampleTypes.framework"
             BlueprintName = "SampleTypes"
             ReferencedContainer = "container:TestSwagger.xcodeproj">

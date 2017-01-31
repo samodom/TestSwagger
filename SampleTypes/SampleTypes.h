@@ -16,5 +16,5 @@ FOUNDATION_EXPORT const unsigned char SampleTypesVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <SampleTypes/PublicHeader.h>
 
-#import "ObjectiveCSpyables.h"
+#import <SampleTypes/ObjectiveCSpyables.h>
 
