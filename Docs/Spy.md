@@ -39,6 +39,31 @@ let classSpy = UIView.createAnimateWithDurationAnimationsSpy(on: MyView.self)
 
 In these examples, the subjects being used are `myView` and `MyView.self`, respectively.
 
+### Construction
+
+Users can create their own spies by using the two built-in types for direct- and indirect-invocation spying:
+
+```swift
+DirectInvocationSpy<Subject>.init?(
+        on subject: Subject,
+        rootClass: AnyClass,
+        selectors: SpyCoselectors
+)
+
+IndirectInvocationSpy<Subject>.init?(
+        on subject: Subject,
+        rootClass: AnyClass,
+        selectors: SpyCoselectors
+}
+```
+
+Subjects must match the following requirements:
+
+- (direct-spying on class methods) subjects must be the root spyable class or one of its subclasses
+- (direct-spying on instance methods) subjects must be instances of the root spyable class or one of its subclasses
+- (indirect-spying on class methods) subjects must subclasses of the root spyable class
+- (indirect-spying on instance methods) subjects must be instances of a subclass of the root spyable class
+
 
 ### Context-based and non-context-based spying
 
