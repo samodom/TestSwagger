@@ -15,9 +15,9 @@
 		0A2235FF1E40477A0031BA61 /* ObjectiveCSpyables.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2235FC1E40477A0031BA61 /* ObjectiveCSpyables.m */; };
 		0A2236001E40477A0031BA61 /* SwiftSpyables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2235FD1E40477A0031BA61 /* SwiftSpyables.swift */; };
 		0A2236121E4048010031BA61 /* DirectInvocationClassSpyingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236021E4048010031BA61 /* DirectInvocationClassSpyingTests.swift */; };
-		0A2236131E4048010031BA61 /* DirectInvocationInstanceSpyingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236031E4048010031BA61 /* DirectInvocationInstanceSpyingTests.swift */; };
+		0A2236131E4048010031BA61 /* DirectInvocationObjectSpyingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236031E4048010031BA61 /* DirectInvocationObjectSpyingTests.swift */; };
 		0A2236141E4048010031BA61 /* IndirectInvocationClassSpyingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236041E4048010031BA61 /* IndirectInvocationClassSpyingTests.swift */; };
-		0A2236151E4048010031BA61 /* IndirectInvocationInstanceSpyingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236051E4048010031BA61 /* IndirectInvocationInstanceSpyingTests.swift */; };
+		0A2236151E4048010031BA61 /* IndirectInvocationObjectSpyingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236051E4048010031BA61 /* IndirectInvocationObjectSpyingTests.swift */; };
 		0A2236161E4048010031BA61 /* SpyableEvidencePersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236061E4048010031BA61 /* SpyableEvidencePersistenceTests.swift */; };
 		0A2236171E4048010031BA61 /* SpyableGeneralEvidenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236071E4048010031BA61 /* SpyableGeneralEvidenceTests.swift */; };
 		0A2236201E404F120031BA61 /* SpyTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A22361F1E404F120031BA61 /* SpyTestCase.swift */; };
@@ -75,9 +75,9 @@
 		0A2235FC1E40477A0031BA61 /* ObjectiveCSpyables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCSpyables.m; sourceTree = "<group>"; };
 		0A2235FD1E40477A0031BA61 /* SwiftSpyables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpyables.swift; sourceTree = "<group>"; };
 		0A2236021E4048010031BA61 /* DirectInvocationClassSpyingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectInvocationClassSpyingTests.swift; sourceTree = "<group>"; };
-		0A2236031E4048010031BA61 /* DirectInvocationInstanceSpyingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectInvocationInstanceSpyingTests.swift; sourceTree = "<group>"; };
+		0A2236031E4048010031BA61 /* DirectInvocationObjectSpyingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectInvocationObjectSpyingTests.swift; sourceTree = "<group>"; };
 		0A2236041E4048010031BA61 /* IndirectInvocationClassSpyingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndirectInvocationClassSpyingTests.swift; sourceTree = "<group>"; };
-		0A2236051E4048010031BA61 /* IndirectInvocationInstanceSpyingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndirectInvocationInstanceSpyingTests.swift; sourceTree = "<group>"; };
+		0A2236051E4048010031BA61 /* IndirectInvocationObjectSpyingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndirectInvocationObjectSpyingTests.swift; sourceTree = "<group>"; };
 		0A2236061E4048010031BA61 /* SpyableEvidencePersistenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyableEvidencePersistenceTests.swift; sourceTree = "<group>"; };
 		0A2236071E4048010031BA61 /* SpyableGeneralEvidenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyableGeneralEvidenceTests.swift; sourceTree = "<group>"; };
 		0A22361F1E404F120031BA61 /* SpyTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyTestCase.swift; sourceTree = "<group>"; };
@@ -192,9 +192,9 @@
 			isa = PBXGroup;
 			children = (
 				0A2236021E4048010031BA61 /* DirectInvocationClassSpyingTests.swift */,
-				0A2236031E4048010031BA61 /* DirectInvocationInstanceSpyingTests.swift */,
+				0A2236031E4048010031BA61 /* DirectInvocationObjectSpyingTests.swift */,
 				0A2236041E4048010031BA61 /* IndirectInvocationClassSpyingTests.swift */,
-				0A2236051E4048010031BA61 /* IndirectInvocationInstanceSpyingTests.swift */,
+				0A2236051E4048010031BA61 /* IndirectInvocationObjectSpyingTests.swift */,
 				0A2236061E4048010031BA61 /* SpyableEvidencePersistenceTests.swift */,
 				0A2236071E4048010031BA61 /* SpyableGeneralEvidenceTests.swift */,
 				0A2236211E404FD30031BA61 /* SpyableTestCase.swift */,
@@ -665,9 +665,9 @@
 				0A2236391E4051910031BA61 /* SpyTestOutputExpectations.swift in Sources */,
 				0A2236171E4048010031BA61 /* SpyableGeneralEvidenceTests.swift in Sources */,
 				0A2236201E404F120031BA61 /* SpyTestCase.swift in Sources */,
-				0A2236151E4048010031BA61 /* IndirectInvocationInstanceSpyingTests.swift in Sources */,
+				0A2236151E4048010031BA61 /* IndirectInvocationObjectSpyingTests.swift in Sources */,
 				0A2236121E4048010031BA61 /* DirectInvocationClassSpyingTests.swift in Sources */,
-				0A2236131E4048010031BA61 /* DirectInvocationInstanceSpyingTests.swift in Sources */,
+				0A2236131E4048010031BA61 /* DirectInvocationObjectSpyingTests.swift in Sources */,
 				0A2236381E4051910031BA61 /* SpyTestCaseIndirectInvocationExpectations.swift in Sources */,
 				0A2236141E4048010031BA61 /* IndirectInvocationClassSpyingTests.swift in Sources */,
 				0A2236361E4051910031BA61 /* SwiftSpies.swift in Sources */,

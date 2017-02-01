@@ -82,25 +82,25 @@ extension SpyTestCase {
             spyExpectations = createSwiftDirectInvocationClassSpyExpectations()
 
         case (.swift, .direct, .instance):
-            spyExpectations = createSwiftDirectInvocationInstanceSpyExpectations()
+            spyExpectations = createSwiftDirectInvocationObjectSpyExpectations()
 
         case (.swift, .indirect, .`class`):
             spyExpectations = createSwiftIndirectInvocationClassSpyExpectations()
 
         case (.swift, .indirect, .instance):
-            spyExpectations = createSwiftIndirectInvocationInstanceSpyExpectations()
+            spyExpectations = createSwiftIndirectInvocationObjectSpyExpectations()
 
         case (.objectiveC, .direct, .`class`):
             spyExpectations = createObjectiveCDirectInvocationClassSpyExpectations()
 
         case (.objectiveC, .direct, .instance):
-            spyExpectations = createObjectiveCDirectInvocationInstanceSpyExpectations()
+            spyExpectations = createObjectiveCDirectInvocationObjectSpyExpectations()
 
         case (.objectiveC, .indirect, .`class`):
             spyExpectations = createObjectiveCIndirectInvocationClassSpyExpectations()
 
         case (.objectiveC, .indirect, .instance):
-            spyExpectations = createObjectiveCIndirectInvocationInstanceSpyExpectations()
+            spyExpectations = createObjectiveCIndirectInvocationObjectSpyExpectations()
         }
 
         assert(!spyExpectations.isEmpty)
