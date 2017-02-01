@@ -11,8 +11,11 @@ import FoundationSwagger
 
 private let EvidenceDirectoryName = "spy-evidence"
 
-let EvidenceDirectoryUrl = DocumentsDirectoryURL
-    .appendingPathComponent(EvidenceDirectoryName, isDirectory: true)
+let EvidenceDirectoryUrl =
+    DocumentsDirectoryURL.appendingPathComponent(
+        EvidenceDirectoryName,
+        isDirectory: true
+)
 
 
 public extension Spyable {

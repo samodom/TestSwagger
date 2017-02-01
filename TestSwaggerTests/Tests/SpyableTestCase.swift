@@ -8,6 +8,7 @@
 //
 
 import XCTest
+import SampleTypes
 import FoundationSwagger
 import TestSwagger
 
