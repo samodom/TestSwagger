@@ -30,6 +30,34 @@ fileprivate extension SwiftRootSpyable {
         SampleMethodSelectors.originalInstanceMethod: true
     ]
 
+    fileprivate enum SampleSpyCoselectors {
+
+        static let directClassSpy = SpyCoselectors(
+            ofType: .class,
+            original: SampleMethodSelectors.originalClassMethod,
+            spy: SampleMethodSelectors.directSpyClassMethod
+        )
+
+        static let directObjectSpy = SpyCoselectors(
+            ofType: .instance,
+            original: SampleMethodSelectors.originalInstanceMethod,
+            spy: SampleMethodSelectors.directSpyInstanceMethod
+        )
+
+        static let indirectClassSpy = SpyCoselectors(
+            ofType: .class,
+            original: SampleMethodSelectors.originalClassMethod,
+            spy: SampleMethodSelectors.indirectSpyClassMethod
+        )
+
+        static let indirectObjectSpy = SpyCoselectors(
+            ofType: .instance,
+            original: SampleMethodSelectors.originalInstanceMethod,
+            spy: SampleMethodSelectors.indirectSpyInstanceMethod
+        )
+        
+    }
+
 }
 
 
@@ -65,58 +93,34 @@ extension SwiftRootSpyable {
 extension SwiftRootSpyable {
 
     class func createDirectInvocationClassSpy(on subject: AnyClass) -> Spy? {
-        let coselectors = SpyCoselectors(
-            ofType: .class,
-            original: SampleMethodSelectors.originalClassMethod,
-            spy: SampleMethodSelectors.directSpyClassMethod
-        )
-
         return DirectInvocationSpy(
             on: subject,
             rootClass: SwiftRootSpyable.self,
-            selectors: coselectors
+            selectors: SampleSpyCoselectors.directClassSpy
         )
     }
 
-    class func createDirectInvocationInstanceSpy(on subject: SwiftRootSpyable) -> Spy {
-        let coselectors = SpyCoselectors(
-            ofType: .instance,
-            original: SampleMethodSelectors.originalInstanceMethod,
-            spy: SampleMethodSelectors.directSpyInstanceMethod
-        )
-
+    class func createDirectInvocationObjectSpy(on subject: SwiftRootSpyable) -> Spy {
         return DirectInvocationSpy(
             on: subject,
             rootClass: SwiftRootSpyable.self,
-            selectors: coselectors
+            selectors: SampleSpyCoselectors.directObjectSpy
         )!
     }
 
     class func createIndirectInvocationClassSpy(on subject: AnyClass) -> Spy? {
-        let coselectors = SpyCoselectors(
-            ofType: .class,
-            original: SampleMethodSelectors.originalClassMethod,
-            spy: SampleMethodSelectors.indirectSpyClassMethod
-        )
-
         return IndirectInvocationSpy(
             on: subject,
             rootClass: SwiftRootSpyable.self,
-            selectors: coselectors
+            selectors: SampleSpyCoselectors.indirectClassSpy
         )
     }
 
-    class func createIndirectInvocationInstanceSpy(on subject: SwiftRootSpyable) -> Spy? {
-        let coselectors = SpyCoselectors(
-            ofType: .instance,
-            original: SampleMethodSelectors.originalInstanceMethod,
-            spy: SampleMethodSelectors.indirectSpyInstanceMethod
-        )
-
+    class func createIndirectInvocationObjectSpy(on subject: SwiftRootSpyable) -> Spy? {
         return IndirectInvocationSpy(
             on: subject,
             rootClass: SwiftRootSpyable.self,
-            selectors: coselectors
+            selectors: SampleSpyCoselectors.indirectObjectSpy
         )
     }
 
