@@ -41,9 +41,6 @@ public struct SpyCoselectors {
 /// A type of test double that captures *evidence* about method invocations.
 public protocol Spy {
 
-    /// Type-level variable indicating the forwarding behavior of spy methods.
-//    static var forwardsMethodCalls: Bool { get }
-
     /// The method surrogate used to swap the real method's implementation with that of the spy.
     var surrogate: MethodSurrogate { get }
 }
