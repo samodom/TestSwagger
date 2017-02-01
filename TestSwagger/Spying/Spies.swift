@@ -9,6 +9,8 @@
 import FoundationSwagger
 
 
+/// Spy class provided for spying on particular class to ensure that calls are made
+/// to a particular class or instance metnod.
 public final class DirectInvocationSpy<Subject>: Spy {
 
     private let _surrogate: MethodSurrogate
@@ -17,6 +19,15 @@ public final class DirectInvocationSpy<Subject>: Spy {
         return _surrogate
     }
 
+    /// Creates a direct-invocation spy using the provided subject and co-selectors
+    /// if the subject is valid.
+    /// - parameter on: The subject of the spy which is either a spyable class (or one
+    ///                 of its subclasses) or an instance of such a class.
+    /// - parameter rootClass: The root spyable class defining the method to be spied upon.
+    /// - parameter selectors: The pair of selectors used in spying along with their method type.
+    /// - note: In order to successfully create a direct invocation spy, the subject must be or
+    ///         be an instance of the root class (or one of its subclasses) for class-method and 
+    ///         instance-method spying, respectively.
     public init?(
         on subject: Subject,
         rootClass: AnyClass,
@@ -41,6 +52,8 @@ public final class DirectInvocationSpy<Subject>: Spy {
 }
 
 
+/// Spy class provided for spying on particular subclass to ensure that calls are made
+/// to its superclass's implementation of a particular class or instance metnod.
 public final class IndirectInvocationSpy<Subject>: Spy {
 
     private let _surrogate: MethodSurrogate
@@ -49,6 +62,15 @@ public final class IndirectInvocationSpy<Subject>: Spy {
         return _surrogate
     }
 
+    /// Creates an indirect-invocation spy using the provided subject and co-selectors
+    /// if the subject is valid.
+    /// - parameter on: The subject of the spy which is either a spyable class (or one
+    ///                 of its subclasses) or an instance of such a class.
+    /// - parameter rootClass: The root spyable class defining the method to be spied upon.
+    /// - parameter selectors: The pair of selectors used in spying along with their method type.
+    /// - note: In order to successfully create an indirect invocation spy, the subject must be
+    ///         or be an instance of a subclass of the root class for class-method and instance-
+    ///         method spying, respectively.
     public init?(
         on subject: Subject,
         rootClass: AnyClass,
