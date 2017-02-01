@@ -40,6 +40,9 @@
             </BuildableReference>
             <SkippedTests>
                <Test
+                  Identifier = "SpyTestCase">
+               </Test>
+               <Test
                   Identifier = "SpyableTestCase">
                </Test>
                <Test

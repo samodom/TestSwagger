@@ -2,127 +2,147 @@
 //  IndirectInvocationInstanceSpyingTests.swift
 //  TestSwagger
 //
-//  Created by Sam Odom on 12/22/16.
+//  Created by Sam Odom on 1/25/17.
 //  Copyright © 2016 Swagger Soft. All rights reserved.
 //
 
 import XCTest
+import SampleTypes
+import FoundationSwagger
 import TestSwagger
 
 
-class IndirectInvocationInstanceSpyingTests: XCTestCase {
+class IndirectInvocationInstanceSpyingTests: SpyTestCase {
 
-    var swiftSpy: SwiftRootSpyable.IndirectInvocationInstanceSpy!
-    var swiftSpyable = SwiftOverrider()
-
-    var objectiveCSpy: ObjectiveCRootSpyable.IndirectInvocationInstanceSpy!
-    var objectiveCSpyable = ObjectiveCOverrider()
-
-    override func setUp() {
-        super.setUp()
-
-        swiftSpy = SwiftRootSpyable.IndirectInvocationInstanceSpy(on: swiftSpyable)
-        objectiveCSpy = ObjectiveCRootSpyable.IndirectInvocationInstanceSpy(on: objectiveCSpyable)
+    override var vector: SpyVector {
+        return .indirect
     }
 
-    override func tearDown() {
-        swiftSpy.endSpying()
-        objectiveCSpy.endSpying()
-
-        SwiftRootSpyable.IndirectInvocationInstanceSpy.forwardsMethodCalls = false
-        ObjectiveCRootSpyable.IndirectInvocationInstanceSpy.forwardsMethodCalls = false
-
-        super.tearDown()
+    override var methodType: MethodType {
+        return .instance
     }
 
-    
-    //  MARK: - Swift spies
+    // MARK: - Swift spies
+
+    func testCannotCreateSwiftSpyWithRootClass() {
+        XCTAssertNil(
+            SwiftRootSpyable.createIndirectInvocationInstanceSpy(on: SwiftRootSpyable()),
+            "Should not be able to create an indirect spy with an instance of the root spyable class"
+        )
+    }
+
+    func testCanCreateSwiftSpyWithDirectSubclass() {
+        XCTAssertNotNil(
+            SwiftRootSpyable.createIndirectInvocationInstanceSpy(on: SwiftInheritor()),
+            "Should be able to create an indirect spy with an instance of a direct subclass of the root spyable class"
+        )
+    }
+
+    func testCanCreateSwiftSpyWithIndirectSubclass() {
+        XCTAssertNotNil(
+            SwiftRootSpyable.createIndirectInvocationInstanceSpy(on: SwiftOverriderOfOverrider()),
+            "Should be able to create an indirect spy with an instance of a direct subclass of the root spyable class"
+        )
+    }
 
     func testForwardingSwiftSpyWithContext() {
-        SwiftRootSpyable.IndirectInvocationInstanceSpy.forwardsMethodCalls = true
-        swiftSpy.spy {
-            XCTAssertEqual(
-                swiftSpyable.sampleInstanceMethod("test"),
-                FirstOverridingMethodReturnValue,
-                "The spy method should be invoked instead of the true method which should be forwarded"
-            )
+        inContext = true
+        shouldForwardMethodCalls = true
+        createSpyExpectations()
+
+        spyExpectations.forEach { expectation in
+            validateSpyExpectation(expectation)
         }
     }
 
     func testForwardingSwiftSpyWithoutContext() {
-        SwiftRootSpyable.IndirectInvocationInstanceSpy.forwardsMethodCalls = true
-        swiftSpy.beginSpying()
-        XCTAssertEqual(
-            swiftSpyable.sampleInstanceMethod("test"),
-            FirstOverridingMethodReturnValue,
-            "The spy method should be invoked instead of the true method which should be forwarded"
-        )
-        swiftSpy.endSpying()
+        shouldForwardMethodCalls = true
+        createSpyExpectations()
+
+        spyExpectations.forEach { expectation in
+            validateSpyExpectation(expectation)
+        }
     }
 
     func testNonForwardingSwiftSpyWithContext() {
-        swiftSpy.spy {
-            XCTAssertEqual(
-                swiftSpyable.sampleInstanceMethod("test"),
-                DirectInvocationSpyDummyReturnValue,
-                "The spy method should be invoked instead of the true method which should not be forwarded"
-            )
+        inContext = true
+        createSpyExpectations()
+
+        spyExpectations.forEach { expectation in
+            validateSpyExpectation(expectation)
         }
     }
 
     func testNonForwardingSwiftSpyWithoutContext() {
-        swiftSpy.beginSpying()
-        XCTAssertEqual(
-            swiftSpyable.sampleInstanceMethod("test"),
-            DirectInvocationSpyDummyReturnValue,
-            "The spy method should be invoked instead of the true method which should not be forwarded"
-        )
-        swiftSpy.endSpying()
-    }
-    
+        createSpyExpectations()
 
-    //  MARK: - Objective-C spies
+        spyExpectations.forEach { expectation in
+            validateSpyExpectation(expectation)
+        }
+    }
+
+
+    // MARK: - Objective-C spies
+
+    func testCannotCreateObjectiveCSpyWithRootClass() {
+        XCTAssertNil(
+            ObjectiveCRootSpyable.createIndirectInvocationInstanceSpy(on: ObjectiveCRootSpyable()),
+            "Should not be able to create an indirect spy with an instance of the root spyable class"
+        )
+    }
+
+    func testCanCreateObjectiveCSpyWithDirectSubclass() {
+        XCTAssertNotNil(
+            ObjectiveCRootSpyable.createIndirectInvocationInstanceSpy(on: ObjectiveCInheritor()),
+            "Should be able to create an indirect spy with an instance of a direct subclass of the root spyable class"
+        )
+    }
+
+    func testCanCreateObjectiveCSpyWithIndirectSubclass() {
+        XCTAssertNotNil(
+            ObjectiveCRootSpyable.createIndirectInvocationInstanceSpy(on: ObjectiveCOverriderOfOverrider()),
+            "Should be able to create an indirect spy with an instance of a direct subclass of the root spyable class"
+        )
+    }
 
     func testForwardingObjectiveCSpyWithContext() {
-        ObjectiveCRootSpyable.IndirectInvocationInstanceSpy.forwardsMethodCalls = true
-        objectiveCSpy.spy {
-            XCTAssertEqual(
-                objectiveCSpyable.sampleInstanceMethod("test"),
-                FirstOverridingMethodReturnValue,
-                "The spy method should be invoked instead of the true method which should be forwarded"
-            )
+        language = .objectiveC
+        inContext = true
+        shouldForwardMethodCalls = true
+        createSpyExpectations()
+
+        spyExpectations.forEach { expectation in
+            validateSpyExpectation(expectation)
         }
     }
 
     func testForwardingObjectiveCSpyWithoutContext() {
-        ObjectiveCRootSpyable.IndirectInvocationInstanceSpy.forwardsMethodCalls = true
-        objectiveCSpy.beginSpying()
-        XCTAssertEqual(
-            objectiveCSpyable.sampleInstanceMethod("test"),
-            FirstOverridingMethodReturnValue,
-            "The spy method should be invoked instead of the true method which should be forwarded"
-        )
-        objectiveCSpy.endSpying()
+        language = .objectiveC
+        shouldForwardMethodCalls = true
+        createSpyExpectations()
+
+        spyExpectations.forEach { expectation in
+            validateSpyExpectation(expectation)
+        }
     }
 
     func testNonForwardingObjectiveCSpyWithContext() {
-        objectiveCSpy.spy {
-            XCTAssertEqual(
-                objectiveCSpyable.sampleInstanceMethod("test"),
-                DirectInvocationSpyDummyReturnValue,
-                "The spy method should be invoked instead of the true method which should not be forwarded"
-            )
+        language = .objectiveC
+        inContext = true
+        createSpyExpectations()
+
+        spyExpectations.forEach { expectation in
+            validateSpyExpectation(expectation)
         }
     }
 
     func testNonForwardingObjectiveCSpyWithoutContext() {
-        objectiveCSpy.beginSpying()
-        XCTAssertEqual(
-            objectiveCSpyable.sampleInstanceMethod("test"),
-            DirectInvocationSpyDummyReturnValue,
-            "The spy method should be invoked instead of the true method which should not be forwarded"
-        )
-        objectiveCSpy.endSpying()
+        language = .objectiveC
+        createSpyExpectations()
+        
+        spyExpectations.forEach { expectation in
+            validateSpyExpectation(expectation)
+        }
     }
-
+    
 }

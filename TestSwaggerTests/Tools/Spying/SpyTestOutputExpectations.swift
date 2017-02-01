@@ -9,7 +9,7 @@
 import TestSwagger
 
 struct SpyTestOutputExpectation {
-    let spy: CustomForwardingSpy
+    let spy: Spy
     let executeSampleMethod: () -> Int
     let output: Int
 }

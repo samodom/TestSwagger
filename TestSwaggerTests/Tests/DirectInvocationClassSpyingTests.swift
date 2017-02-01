@@ -7,58 +7,58 @@
 //
 
 import XCTest
+import SampleTypes
 import TestSwagger
 
 
-class DirectInvocationClassSpyingTests: DirectInvocationSpyingTestCase {
+class DirectInvocationClassSpyingTests: SpyTestCase {
 
-    //  MARK: - Swift spies
+    // MARK: - Swift spies
 
     func testCannotCreateSwiftSpyWithRootSwiftClass() {
         let swiftRootClass: AnyClass = objc_getClass("SwiftObject") as! AnyClass
         XCTAssertNil(
-            SwiftRootSpyable.DirectInvocationClassSpy(on: swiftRootClass.self),
+            SwiftRootSpyable.createDirectInvocationClassSpy(on: swiftRootClass.self),
             "Should not be able to create a direct spy with the root Swift class"
         )
     }
 
     func testCannotCreateSwiftSpyWithNSObject() {
         XCTAssertNil(
-            SwiftRootSpyable.DirectInvocationClassSpy(on: NSObject.self),
+            SwiftRootSpyable.createDirectInvocationClassSpy(on: NSObject.self),
             "Should not be able to create a direct spy with NSObject"
-        )
-    }
-
-    func testCannotCreateSwiftSpyWithRootClass() {
-        XCTAssertNil(
-            SwiftRootSpyable.DirectInvocationClassSpy(on: SwiftRootSpyable.self),
-            "Should not be able to create a direct spy with the root spyable class"
         )
     }
 
     func testCannotCreateSwiftSpyWithInvalidSubclass() {
         XCTAssertNil(
-            SwiftRootSpyable.DirectInvocationClassSpy(on: URLSession.self),
+            SwiftRootSpyable.createDirectInvocationClassSpy(on: URLSession.self),
             "Should not be able to create a direct spy with a class that does not inherit from the spyable class"
+        )
+    }
+
+    func testCanCreateSwiftSpyWithRootClass() {
+        XCTAssertNotNil(
+            SwiftRootSpyable.createDirectInvocationClassSpy(on: SwiftRootSpyable.self),
+            "Should be able to create a direct spy with the root spyable class"
         )
     }
 
     func testCanCreateSwiftSpyWithDirectSubclass() {
         XCTAssertNotNil(
-            SwiftRootSpyable.DirectInvocationClassSpy(on: SwiftInheritor.self),
+            SwiftRootSpyable.createDirectInvocationClassSpy(on: SwiftInheritor.self),
             "Should be able to create a direct spy with a direct subclass of the root spyable class"
         )
     }
 
     func testCanCreateSwiftSpyWithIndirectSubclass() {
         XCTAssertNotNil(
-            SwiftRootSpyable.DirectInvocationClassSpy(on: SwiftOverriderOfOverrider.self),
+            SwiftRootSpyable.createDirectInvocationClassSpy(on: SwiftOverriderOfOverrider.self),
             "Should be able to create a direct spy with a direct subclass of the root spyable class"
         )
     }
 
     func testForwardingSwiftSpyWithContext() {
-        language = .swift
         inContext = true
         shouldForwardMethodCalls = true
         createSpyExpectations()
@@ -69,7 +69,6 @@ class DirectInvocationClassSpyingTests: DirectInvocationSpyingTestCase {
     }
 
     func testForwardingSwiftSpyWithoutContext() {
-        language = .swift
         shouldForwardMethodCalls = true
         createSpyExpectations()
 
@@ -79,7 +78,6 @@ class DirectInvocationClassSpyingTests: DirectInvocationSpyingTestCase {
     }
 
     func testNonForwardingSwiftSpyWithContext() {
-        language = .swift
         inContext = true
         createSpyExpectations()
 
@@ -89,7 +87,6 @@ class DirectInvocationClassSpyingTests: DirectInvocationSpyingTestCase {
     }
 
     func testNonForwardingSwiftSpyWithoutContext() {
-        language = .swift
         createSpyExpectations()
 
         spyExpectations.forEach { expectation in
@@ -98,47 +95,47 @@ class DirectInvocationClassSpyingTests: DirectInvocationSpyingTestCase {
     }
 
 
-    //  MARK: - Objective-C spies
+    // MARK: - Objective-C spies
 
     func testCannotCreateObjectiveCSpyWithRootSwiftClass() {
         let swiftRootClass: AnyClass = objc_getClass("SwiftObject") as! AnyClass
         XCTAssertNil(
-            ObjectiveCRootSpyable.DirectInvocationClassSpy(on: swiftRootClass.self),
+            ObjectiveCRootSpyable.createDirectInvocationClassSpy(on: swiftRootClass.self),
             "Should not be able to create a direct spy with the root Swift class"
         )
     }
 
     func testCannotCreateObjectiveCSpyWithNSObject() {
         XCTAssertNil(
-            ObjectiveCRootSpyable.DirectInvocationClassSpy(on: NSObject.self),
+            ObjectiveCRootSpyable.createDirectInvocationClassSpy(on: NSObject.self),
             "Should not be able to create a direct spy with NSObject"
-        )
-    }
-
-    func testCannotCreateObjectiveCSpyWithRootClass() {
-        XCTAssertNil(
-            ObjectiveCRootSpyable.DirectInvocationClassSpy(on: ObjectiveCRootSpyable.self),
-            "Should not be able to create a direct spy with the root spyable class"
         )
     }
 
     func testCannotCreateObjectiveCSpyWithInvalidSubclass() {
         XCTAssertNil(
-            ObjectiveCRootSpyable.DirectInvocationClassSpy(on: URLSession.self),
+            ObjectiveCRootSpyable.createDirectInvocationClassSpy(on: URLSession.self),
             "Should not be able to create a direct spy with a class that does not inherit from the spyable class"
+        )
+    }
+
+    func testCanCreateObjectiveCSpyWithRootClass() {
+        XCTAssertNotNil(
+            ObjectiveCRootSpyable.createDirectInvocationClassSpy(on: ObjectiveCRootSpyable.self),
+            "Should be able to create a direct spy with the root spyable class"
         )
     }
 
     func testCanCreateObjectiveCSpyWithDirectSubclass() {
         XCTAssertNotNil(
-            ObjectiveCRootSpyable.DirectInvocationClassSpy(on: ObjectiveCInheritor.self),
+            ObjectiveCRootSpyable.createDirectInvocationClassSpy(on: ObjectiveCInheritor.self),
             "Should be able to create a direct spy with a direct subclass of the root spyable class"
         )
     }
 
     func testCanCreateObjectiveCSpyWithIndirectSubclass() {
         XCTAssertNotNil(
-            ObjectiveCRootSpyable.DirectInvocationClassSpy(on: ObjectiveCOverriderOfOverrider.self),
+            ObjectiveCRootSpyable.createDirectInvocationClassSpy(on: ObjectiveCOverriderOfOverrider.self),
             "Should be able to create a direct spy with a direct subclass of the root spyable class"
         )
     }
