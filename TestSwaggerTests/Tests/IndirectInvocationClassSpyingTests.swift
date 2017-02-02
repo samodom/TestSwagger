@@ -14,7 +14,7 @@ import TestSwagger
 class IndirectInvocationClassSpyingTests: SpyTestCase {
 
     override var vector: SpyVector {
-        return .indirect
+        return .indirect(rootSpyableClass)
     }
 
     // MARK: - Swift spies

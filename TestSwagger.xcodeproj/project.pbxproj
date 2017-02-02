@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A0900B91E41432F00E97094 /* Spies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0900B81E41432F00E97094 /* Spies.swift */; };
 		0A2235E71E4047540031BA61 /* SampleTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2235DE1E4047540031BA61 /* SampleTypes.framework */; };
 		0A2235EE1E4047540031BA61 /* SampleTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A2235E01E4047540031BA61 /* SampleTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0A2235F81E4047700031BA61 /* SampleSpyableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2235F61E4047700031BA61 /* SampleSpyableTests.swift */; };
@@ -64,7 +63,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A0900B81E41432F00E97094 /* Spies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spies.swift; sourceTree = "<group>"; };
 		0A2235DE1E4047540031BA61 /* SampleTypes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SampleTypes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A2235E01E4047540031BA61 /* SampleTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleTypes.h; sourceTree = "<group>"; };
 		0A2235E11E4047540031BA61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 			children = (
 				0A2236261E4050D00031BA61 /* Evidence.swift */,
 				0A2236271E4050D00031BA61 /* EvidencePersistence.swift */,
-				0A0900B81E41432F00E97094 /* Spies.swift */,
 				0A2236281E4050D00031BA61 /* Spy.swift */,
 				0A2236291E4050D00031BA61 /* Spyable.swift */,
 			);
@@ -650,7 +647,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A0900B91E41432F00E97094 /* Spies.swift in Sources */,
 				0A22362D1E4050D00031BA61 /* Spyable.swift in Sources */,
 				0A22362B1E4050D00031BA61 /* EvidencePersistence.swift in Sources */,
 				0A22362A1E4050D00031BA61 /* Evidence.swift in Sources */,

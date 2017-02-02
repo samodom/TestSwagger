@@ -15,12 +15,13 @@ import TestSwagger
 class IndirectInvocationObjectSpyingTests: SpyTestCase {
 
     override var vector: SpyVector {
-        return .indirect
+        return .indirect(rootSpyableClass)
     }
 
     override var methodType: MethodType {
         return .instance
     }
+
 
     // MARK: - Swift spies
 

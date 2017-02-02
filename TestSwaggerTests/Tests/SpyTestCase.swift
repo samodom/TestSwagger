@@ -19,20 +19,25 @@ class SpyTestCase: XCTestCase {
         case objectiveC
     }
 
-    enum SpyVector {
-        case direct
-        case indirect
-    }
-
     var inContext = false
     var language = SpyLanguage.swift
 
     var vector: SpyVector {
-        return .direct
+        fatalError("Each spy test case subclass should define its own spy vector")
     }
 
     var methodType: MethodType {
         return .class
+    }
+
+    var rootSpyableClass: AnyClass {
+        switch language {
+        case .swift:
+            return SwiftRootSpyable.self
+
+        case .objectiveC:
+            return ObjectiveCRootSpyable.self
+        }
     }
 
     var shouldForwardMethodCalls = false
@@ -78,28 +83,28 @@ extension SpyTestCase {
         setSpyMethodCallForwarding(to: shouldForwardMethodCalls)
 
         switch (language, vector, methodType) {
-        case (.swift, .direct, .`class`):
+        case (.swift, .direct(_), .`class`):
             spyExpectations = createSwiftDirectInvocationClassSpyExpectations()
 
-        case (.swift, .direct, .instance):
+        case (.swift, .direct(_), .instance):
             spyExpectations = createSwiftDirectInvocationObjectSpyExpectations()
 
-        case (.swift, .indirect, .`class`):
+        case (.swift, .indirect(_), .`class`):
             spyExpectations = createSwiftIndirectInvocationClassSpyExpectations()
 
-        case (.swift, .indirect, .instance):
+        case (.swift, .indirect(_), .instance):
             spyExpectations = createSwiftIndirectInvocationObjectSpyExpectations()
 
-        case (.objectiveC, .direct, .`class`):
+        case (.objectiveC, .direct(_), .`class`):
             spyExpectations = createObjectiveCDirectInvocationClassSpyExpectations()
 
-        case (.objectiveC, .direct, .instance):
+        case (.objectiveC, .direct(_), .instance):
             spyExpectations = createObjectiveCDirectInvocationObjectSpyExpectations()
 
-        case (.objectiveC, .indirect, .`class`):
+        case (.objectiveC, .indirect(_), .`class`):
             spyExpectations = createObjectiveCIndirectInvocationClassSpyExpectations()
 
-        case (.objectiveC, .indirect, .instance):
+        case (.objectiveC, .indirect(_)  , .instance):
             spyExpectations = createObjectiveCIndirectInvocationObjectSpyExpectations()
         }
 
@@ -146,9 +151,24 @@ extension SpyTestCase {
     }
 
     private func methodSwizzlingErrorMessage(for expectation: SpyTestOutputExpectation, output: Int) -> String {
-        let spyClassName = expectation.spy.surrogate.owningClass.debugDescription()
+        let spyClassName = vector.subjectClass.debugDescription()
         let methodOrigin = shouldForwardMethodCalls ? "original" : "spy"
         return "The \(methodOrigin) method was not invoked: \(output) != \(expectation.output) for class \(spyClassName)"
+    }
+
+}
+
+
+fileprivate extension SpyVector {
+
+    var subjectClass: AnyClass {
+        switch self {
+        case .direct(let subject):
+            return subject
+
+        case .indirect(let subject):
+            return subject
+        }
     }
 
 }

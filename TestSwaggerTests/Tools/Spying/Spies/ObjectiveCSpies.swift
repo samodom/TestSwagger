@@ -12,6 +12,9 @@ import FoundationSwagger
 
 extension ObjectiveCRootSpyable: Spyable {}
 
+
+// MARK: Selectors
+
 extension ObjectiveCRootSpyable {
 
     enum SampleMethodSelectors {
@@ -23,11 +26,6 @@ extension ObjectiveCRootSpyable {
         static let directSpyInstanceMethod = #selector(ObjectiveCRootSpyable.directSpy_sampleInstanceMethod(_:))
         static let indirectSpyInstanceMethod = #selector(ObjectiveCRootSpyable.indirectSpy_sampleInstanceMethod(_:))
     }
-
-    fileprivate static var ObjectiveCRootSpyableSelectorForwarding = [
-        SampleMethodSelectors.originalClassMethod: false,
-        SampleMethodSelectors.originalInstanceMethod: false
-    ]
 
     fileprivate enum SampleSpyCoselectors {
 
@@ -59,40 +57,15 @@ extension ObjectiveCRootSpyable {
     
 }
 
+
+// MARK: Spy method forwarding
+
 extension ObjectiveCRootSpyable {
 
-    class func createDirectInvocationClassSpy(on subject: AnyClass) -> Spy? {
-        return DirectInvocationSpy(
-            on: subject,
-            rootClass: ObjectiveCRootSpyable.self,
-            selectors: SampleSpyCoselectors.directClassSpy
-        )
-    }
-
-    class func createDirectInvocationObjectSpy(on subject: ObjectiveCRootSpyable) -> Spy {
-        return DirectInvocationSpy(
-            on: subject,
-            rootClass: ObjectiveCRootSpyable.self,
-            selectors: SampleSpyCoselectors.directObjectSpy
-        )!
-    }
-
-    class func createIndirectInvocationClassSpy(on subject: AnyClass) -> Spy? {
-        return IndirectInvocationSpy(
-            on: subject,
-            rootClass: ObjectiveCRootSpyable.self,
-            selectors: SampleSpyCoselectors.indirectClassSpy
-        )
-    }
-
-
-    class func createIndirectInvocationObjectSpy(on subject: ObjectiveCRootSpyable) -> Spy? {
-        return IndirectInvocationSpy(
-            on: subject,
-            rootClass: ObjectiveCRootSpyable.self,
-            selectors: SampleSpyCoselectors.indirectObjectSpy
-        )
-    }
+    fileprivate static var ObjectiveCRootSpyableSelectorForwarding = [
+        SampleMethodSelectors.originalClassMethod: false,
+        SampleMethodSelectors.originalInstanceMethod: false
+    ]
 
     class func forwardsSpyMethodCalls(for selector: Selector) -> Bool {
         return ObjectiveCRootSpyableSelectorForwarding[selector] ?? false
@@ -107,6 +80,53 @@ extension ObjectiveCRootSpyable {
             ObjectiveCRootSpyableSelectorForwarding[key] = forwards
         }
     }
+    
+}
+
+
+// MARK: Spy creation
+
+extension ObjectiveCRootSpyable {
+
+    class func createDirectInvocationClassSpy(on subject: AnyClass) -> Spy? {
+        return Spy(
+            on: subject,
+            selectors: SampleSpyCoselectors.directClassSpy,
+            vector: .direct(ObjectiveCRootSpyable.self)
+        )
+    }
+
+    class func createDirectInvocationObjectSpy(on subject: ObjectiveCRootSpyable) -> Spy {
+        return Spy(
+            on: subject,
+            selectors: SampleSpyCoselectors.directObjectSpy,
+            vector: .direct(ObjectiveCRootSpyable.self)
+        )!
+    }
+
+    class func createIndirectInvocationClassSpy(on subject: AnyClass) -> Spy? {
+        return Spy(
+            on: subject,
+            selectors: SampleSpyCoselectors.indirectClassSpy,
+            vector: .indirect(ObjectiveCRootSpyable.self)
+        )
+    }
+
+
+    class func createIndirectInvocationObjectSpy(on subject: ObjectiveCRootSpyable) -> Spy? {
+        return Spy(
+            on: subject,
+            selectors: SampleSpyCoselectors.indirectObjectSpy,
+            vector: .indirect(ObjectiveCRootSpyable.self)
+        )
+    }
+
+}
+
+
+// MARK: Spy methods
+
+extension ObjectiveCRootSpyable {
 
     dynamic class func directSpy_sampleClassMethod(_ input: String) -> Int {
         return forwardsSpyMethodCalls(for: SampleMethodSelectors.originalClassMethod) ?
