@@ -45,9 +45,6 @@
                <Test
                   Identifier = "SpyableTestCase">
                </Test>
-               <Test
-                  Identifier = "SpyableTests">
-               </Test>
             </SkippedTests>
          </TestableReference>
       </Testables>
