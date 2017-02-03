@@ -1,5 +1,5 @@
 //
-//  IndirectInvocationObjectSpyingTests.swift
+//  IndirectObjectSpyControllerTests.swift
 //  TestSwagger
 //
 //  Created by Sam Odom on 1/25/17.
@@ -12,10 +12,10 @@ import FoundationSwagger
 import TestSwagger
 
 
-class IndirectInvocationObjectSpyingTests: SpyTestCase {
+class IndirectObjectSpyControllerTests: SpyTestCase {
 
     override var vector: SpyVector {
-        return .indirect(rootSpyableClass)
+        return .indirect
     }
 
     override var methodType: MethodType {
@@ -27,21 +27,21 @@ class IndirectInvocationObjectSpyingTests: SpyTestCase {
 
     func testCannotCreateSwiftSpyWithRootClass() {
         XCTAssertNil(
-            SwiftRootSpyable.createIndirectInvocationObjectSpy(on: SwiftRootSpyable()),
+            SwiftRootSpyable.IndirectObjectSpyController.createSpy(on: SwiftRootSpyable()),
             "Should not be able to create an indirect spy with an instance of the root spyable class"
         )
     }
 
     func testCanCreateSwiftSpyWithDirectSubclass() {
         XCTAssertNotNil(
-            SwiftRootSpyable.createIndirectInvocationObjectSpy(on: SwiftInheritor()),
+            SwiftRootSpyable.IndirectObjectSpyController.createSpy(on: SwiftInheritor()),
             "Should be able to create an indirect spy with an instance of a direct subclass of the root spyable class"
         )
     }
 
     func testCanCreateSwiftSpyWithIndirectSubclass() {
         XCTAssertNotNil(
-            SwiftRootSpyable.createIndirectInvocationObjectSpy(on: SwiftOverriderOfOverrider()),
+            SwiftRootSpyable.IndirectObjectSpyController.createSpy(on: SwiftOverriderOfOverrider()),
             "Should be able to create an indirect spy with an instance of a direct subclass of the root spyable class"
         )
     }
@@ -87,21 +87,21 @@ class IndirectInvocationObjectSpyingTests: SpyTestCase {
 
     func testCannotCreateObjectiveCSpyWithRootClass() {
         XCTAssertNil(
-            ObjectiveCRootSpyable.createIndirectInvocationObjectSpy(on: ObjectiveCRootSpyable()),
+            ObjectiveCRootSpyable.IndirectObjectSpyController.createSpy(on: ObjectiveCRootSpyable()),
             "Should not be able to create an indirect spy with an instance of the root spyable class"
         )
     }
 
     func testCanCreateObjectiveCSpyWithDirectSubclass() {
         XCTAssertNotNil(
-            ObjectiveCRootSpyable.createIndirectInvocationObjectSpy(on: ObjectiveCInheritor()),
+            ObjectiveCRootSpyable.IndirectObjectSpyController.createSpy(on: ObjectiveCInheritor()),
             "Should be able to create an indirect spy with an instance of a direct subclass of the root spyable class"
         )
     }
 
     func testCanCreateObjectiveCSpyWithIndirectSubclass() {
         XCTAssertNotNil(
-            ObjectiveCRootSpyable.createIndirectInvocationObjectSpy(on: ObjectiveCOverriderOfOverrider()),
+            ObjectiveCRootSpyable.IndirectObjectSpyController.createSpy(on: ObjectiveCOverriderOfOverrider()),
             "Should be able to create an indirect spy with an instance of a direct subclass of the root spyable class"
         )
     }

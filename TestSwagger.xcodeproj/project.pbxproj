@@ -13,10 +13,10 @@
 		0A2235FE1E40477A0031BA61 /* ObjectiveCSpyables.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A2235FB1E40477A0031BA61 /* ObjectiveCSpyables.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0A2235FF1E40477A0031BA61 /* ObjectiveCSpyables.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2235FC1E40477A0031BA61 /* ObjectiveCSpyables.m */; };
 		0A2236001E40477A0031BA61 /* SwiftSpyables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2235FD1E40477A0031BA61 /* SwiftSpyables.swift */; };
-		0A2236121E4048010031BA61 /* DirectInvocationClassSpyingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236021E4048010031BA61 /* DirectInvocationClassSpyingTests.swift */; };
-		0A2236131E4048010031BA61 /* DirectInvocationObjectSpyingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236031E4048010031BA61 /* DirectInvocationObjectSpyingTests.swift */; };
-		0A2236141E4048010031BA61 /* IndirectInvocationClassSpyingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236041E4048010031BA61 /* IndirectInvocationClassSpyingTests.swift */; };
-		0A2236151E4048010031BA61 /* IndirectInvocationObjectSpyingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236051E4048010031BA61 /* IndirectInvocationObjectSpyingTests.swift */; };
+		0A2236121E4048010031BA61 /* DirectClassSpyControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236021E4048010031BA61 /* DirectClassSpyControllerTests.swift */; };
+		0A2236131E4048010031BA61 /* DirectObjectSpyControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236031E4048010031BA61 /* DirectObjectSpyControllerTests.swift */; };
+		0A2236141E4048010031BA61 /* IndirectClassSpyControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236041E4048010031BA61 /* IndirectClassSpyControllerTests.swift */; };
+		0A2236151E4048010031BA61 /* IndirectObjectSpyControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236051E4048010031BA61 /* IndirectObjectSpyControllerTests.swift */; };
 		0A2236161E4048010031BA61 /* SpyableEvidencePersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236061E4048010031BA61 /* SpyableEvidencePersistenceTests.swift */; };
 		0A2236171E4048010031BA61 /* SpyableGeneralEvidenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236071E4048010031BA61 /* SpyableGeneralEvidenceTests.swift */; };
 		0A2236201E404F120031BA61 /* SpyTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A22361F1E404F120031BA61 /* SpyTestCase.swift */; };
@@ -32,6 +32,7 @@
 		0A2236391E4051910031BA61 /* SpyTestOutputExpectations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236341E4051910031BA61 /* SpyTestOutputExpectations.swift */; };
 		0A22363B1E4125A90031BA61 /* SampleTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2235DE1E4047540031BA61 /* SampleTypes.framework */; };
 		0A22363C1E4125A90031BA61 /* TestSwagger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFFECE31DFE256100D4409C /* TestSwagger.framework */; };
+		0AF059841E4409B4000BE6C5 /* SpyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF059831E4409B4000BE6C5 /* SpyController.swift */; };
 		0AF059861E44179C000BE6C5 /* SpyEvidenceReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF059851E44179C000BE6C5 /* SpyEvidenceReference.swift */; };
 		0AF059881E45103B000BE6C5 /* SpyEvidenceReferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF059871E45103B000BE6C5 /* SpyEvidenceReferenceTests.swift */; };
 		0AFFECF41DFE256100D4409C /* TestSwagger.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AFFECE61DFE256100D4409C /* TestSwagger.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -74,10 +75,10 @@
 		0A2235FB1E40477A0031BA61 /* ObjectiveCSpyables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCSpyables.h; sourceTree = "<group>"; };
 		0A2235FC1E40477A0031BA61 /* ObjectiveCSpyables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCSpyables.m; sourceTree = "<group>"; };
 		0A2235FD1E40477A0031BA61 /* SwiftSpyables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpyables.swift; sourceTree = "<group>"; };
-		0A2236021E4048010031BA61 /* DirectInvocationClassSpyingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectInvocationClassSpyingTests.swift; sourceTree = "<group>"; };
-		0A2236031E4048010031BA61 /* DirectInvocationObjectSpyingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectInvocationObjectSpyingTests.swift; sourceTree = "<group>"; };
-		0A2236041E4048010031BA61 /* IndirectInvocationClassSpyingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndirectInvocationClassSpyingTests.swift; sourceTree = "<group>"; };
-		0A2236051E4048010031BA61 /* IndirectInvocationObjectSpyingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndirectInvocationObjectSpyingTests.swift; sourceTree = "<group>"; };
+		0A2236021E4048010031BA61 /* DirectClassSpyControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectClassSpyControllerTests.swift; sourceTree = "<group>"; };
+		0A2236031E4048010031BA61 /* DirectObjectSpyControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectObjectSpyControllerTests.swift; sourceTree = "<group>"; };
+		0A2236041E4048010031BA61 /* IndirectClassSpyControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndirectClassSpyControllerTests.swift; sourceTree = "<group>"; };
+		0A2236051E4048010031BA61 /* IndirectObjectSpyControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndirectObjectSpyControllerTests.swift; sourceTree = "<group>"; };
 		0A2236061E4048010031BA61 /* SpyableEvidencePersistenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyableEvidencePersistenceTests.swift; sourceTree = "<group>"; };
 		0A2236071E4048010031BA61 /* SpyableGeneralEvidenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyableGeneralEvidenceTests.swift; sourceTree = "<group>"; };
 		0A22361F1E404F120031BA61 /* SpyTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyTestCase.swift; sourceTree = "<group>"; };
@@ -91,6 +92,7 @@
 		0A2236321E4051910031BA61 /* SpyTestCaseDirectInvocationExpectations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyTestCaseDirectInvocationExpectations.swift; sourceTree = "<group>"; };
 		0A2236331E4051910031BA61 /* SpyTestCaseIndirectInvocationExpectations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyTestCaseIndirectInvocationExpectations.swift; sourceTree = "<group>"; };
 		0A2236341E4051910031BA61 /* SpyTestOutputExpectations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyTestOutputExpectations.swift; sourceTree = "<group>"; };
+		0AF059831E4409B4000BE6C5 /* SpyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyController.swift; sourceTree = "<group>"; };
 		0AF059851E44179C000BE6C5 /* SpyEvidenceReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyEvidenceReference.swift; sourceTree = "<group>"; };
 		0AF059871E45103B000BE6C5 /* SpyEvidenceReferenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyEvidenceReferenceTests.swift; sourceTree = "<group>"; };
 		0AFFECE31DFE256100D4409C /* TestSwagger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TestSwagger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,10 +195,10 @@
 		0A2236011E4048010031BA61 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				0A2236021E4048010031BA61 /* DirectInvocationClassSpyingTests.swift */,
-				0A2236031E4048010031BA61 /* DirectInvocationObjectSpyingTests.swift */,
-				0A2236041E4048010031BA61 /* IndirectInvocationClassSpyingTests.swift */,
-				0A2236051E4048010031BA61 /* IndirectInvocationObjectSpyingTests.swift */,
+				0A2236021E4048010031BA61 /* DirectClassSpyControllerTests.swift */,
+				0A2236031E4048010031BA61 /* DirectObjectSpyControllerTests.swift */,
+				0A2236041E4048010031BA61 /* IndirectClassSpyControllerTests.swift */,
+				0A2236051E4048010031BA61 /* IndirectObjectSpyControllerTests.swift */,
 				0A2236061E4048010031BA61 /* SpyableEvidencePersistenceTests.swift */,
 				0A2236071E4048010031BA61 /* SpyableGeneralEvidenceTests.swift */,
 				0A2236211E404FD30031BA61 /* SpyableTestCase.swift */,
@@ -221,6 +223,7 @@
 				0A2236271E4050D00031BA61 /* EvidencePersistence.swift */,
 				0A2236281E4050D00031BA61 /* Spy.swift */,
 				0A2236291E4050D00031BA61 /* Spyable.swift */,
+				0AF059831E4409B4000BE6C5 /* SpyController.swift */,
 				0AF059851E44179C000BE6C5 /* SpyEvidenceReference.swift */,
 			);
 			path = Spying;
@@ -658,6 +661,7 @@
 				0A22362A1E4050D00031BA61 /* Evidence.swift in Sources */,
 				0AF059861E44179C000BE6C5 /* SpyEvidenceReference.swift in Sources */,
 				0A22362C1E4050D00031BA61 /* Spy.swift in Sources */,
+				0AF059841E4409B4000BE6C5 /* SpyController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,11 +673,11 @@
 				0AF059881E45103B000BE6C5 /* SpyEvidenceReferenceTests.swift in Sources */,
 				0A2236171E4048010031BA61 /* SpyableGeneralEvidenceTests.swift in Sources */,
 				0A2236201E404F120031BA61 /* SpyTestCase.swift in Sources */,
-				0A2236151E4048010031BA61 /* IndirectInvocationObjectSpyingTests.swift in Sources */,
-				0A2236121E4048010031BA61 /* DirectInvocationClassSpyingTests.swift in Sources */,
-				0A2236131E4048010031BA61 /* DirectInvocationObjectSpyingTests.swift in Sources */,
+				0A2236151E4048010031BA61 /* IndirectObjectSpyControllerTests.swift in Sources */,
+				0A2236121E4048010031BA61 /* DirectClassSpyControllerTests.swift in Sources */,
+				0A2236131E4048010031BA61 /* DirectObjectSpyControllerTests.swift in Sources */,
 				0A2236381E4051910031BA61 /* SpyTestCaseIndirectInvocationExpectations.swift in Sources */,
-				0A2236141E4048010031BA61 /* IndirectInvocationClassSpyingTests.swift in Sources */,
+				0A2236141E4048010031BA61 /* IndirectClassSpyControllerTests.swift in Sources */,
 				0A2236361E4051910031BA61 /* SwiftSpies.swift in Sources */,
 				0A2236351E4051910031BA61 /* ObjectiveCSpies.swift in Sources */,
 				0A2236221E404FD30031BA61 /* SpyableTestCase.swift in Sources */,

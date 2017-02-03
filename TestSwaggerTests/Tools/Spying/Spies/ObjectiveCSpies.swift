@@ -13,6 +13,41 @@ import FoundationSwagger
 extension ObjectiveCRootSpyable: Spyable {}
 
 
+// MARK: Spy controllers
+
+public extension ObjectiveCRootSpyable {
+
+    public enum DirectClassSpyController: SpyController {
+        public static let rootSpyableClass: AnyClass = ObjectiveCRootSpyable.self
+        public static let vector = SpyVector.direct
+        public static let coselectors = SampleSpyCoselectors.directClassSpy
+        public static let evidence: Set<SpyEvidenceReference> = []
+    }
+
+    public enum DirectObjectSpyController: SpyController {
+        public static let rootSpyableClass: AnyClass = ObjectiveCRootSpyable.self
+        public static let vector = SpyVector.direct
+        public static let coselectors = SampleSpyCoselectors.directObjectSpy
+        public static let evidence: Set<SpyEvidenceReference> = []
+    }
+
+    public enum IndirectClassSpyController: SpyController {
+        public static let rootSpyableClass: AnyClass = ObjectiveCRootSpyable.self
+        public static let vector = SpyVector.indirect
+        public static let coselectors = SampleSpyCoselectors.indirectClassSpy
+        public static let evidence: Set<SpyEvidenceReference> = []
+    }
+
+    public enum IndirectObjectSpyController: SpyController {
+        public static let rootSpyableClass: AnyClass = ObjectiveCRootSpyable.self
+        public static let vector = SpyVector.indirect
+        public static let coselectors = SampleSpyCoselectors.indirectObjectSpy
+        public static let evidence: Set<SpyEvidenceReference> = []
+    }
+
+}
+
+
 // MARK: Selectors
 
 extension ObjectiveCRootSpyable {
@@ -30,97 +65,31 @@ extension ObjectiveCRootSpyable {
     fileprivate enum SampleSpyCoselectors {
 
         static let directClassSpy = SpyCoselectors(
-            ofType: .class,
+            methodType: .class,
             original: SampleMethodSelectors.originalClassMethod,
             spy: SampleMethodSelectors.directSpyClassMethod
         )
 
         static let directObjectSpy = SpyCoselectors(
-            ofType: .instance,
+            methodType: .instance,
             original: SampleMethodSelectors.originalInstanceMethod,
             spy: SampleMethodSelectors.directSpyInstanceMethod
         )
 
         static let indirectClassSpy = SpyCoselectors(
-            ofType: .class,
+            methodType: .class,
             original: SampleMethodSelectors.originalClassMethod,
             spy: SampleMethodSelectors.indirectSpyClassMethod
         )
 
         static let indirectObjectSpy = SpyCoselectors(
-            ofType: .instance,
+            methodType: .instance,
             original: SampleMethodSelectors.originalInstanceMethod,
             spy: SampleMethodSelectors.indirectSpyInstanceMethod
         )
         
     }
     
-}
-
-
-// MARK: Spy method forwarding
-
-extension ObjectiveCRootSpyable {
-
-    fileprivate static var ObjectiveCRootSpyableSelectorForwarding = [
-        SampleMethodSelectors.originalClassMethod: false,
-        SampleMethodSelectors.originalInstanceMethod: false
-    ]
-
-    class func forwardsSpyMethodCalls(for selector: Selector) -> Bool {
-        return ObjectiveCRootSpyableSelectorForwarding[selector] ?? false
-    }
-
-    class func setSpyMethodForwarding(for selector: Selector, forwards: Bool) {
-        ObjectiveCRootSpyableSelectorForwarding[selector] = forwards
-    }
-
-    class func setAllSpyMethodForwarding(to forwards: Bool) {
-        ObjectiveCRootSpyableSelectorForwarding.keys.forEach { key in
-            ObjectiveCRootSpyableSelectorForwarding[key] = forwards
-        }
-    }
-    
-}
-
-
-// MARK: Spy creation
-
-extension ObjectiveCRootSpyable {
-
-    class func createDirectInvocationClassSpy(on subject: AnyClass) -> Spy? {
-        return Spy(
-            on: subject,
-            selectors: SampleSpyCoselectors.directClassSpy,
-            vector: .direct(ObjectiveCRootSpyable.self)
-        )
-    }
-
-    class func createDirectInvocationObjectSpy(on subject: ObjectiveCRootSpyable) -> Spy {
-        return Spy(
-            on: subject,
-            selectors: SampleSpyCoselectors.directObjectSpy,
-            vector: .direct(ObjectiveCRootSpyable.self)
-        )!
-    }
-
-    class func createIndirectInvocationClassSpy(on subject: AnyClass) -> Spy? {
-        return Spy(
-            on: subject,
-            selectors: SampleSpyCoselectors.indirectClassSpy,
-            vector: .indirect(ObjectiveCRootSpyable.self)
-        )
-    }
-
-
-    class func createIndirectInvocationObjectSpy(on subject: ObjectiveCRootSpyable) -> Spy? {
-        return Spy(
-            on: subject,
-            selectors: SampleSpyCoselectors.indirectObjectSpy,
-            vector: .indirect(ObjectiveCRootSpyable.self)
-        )
-    }
-
 }
 
 
@@ -148,4 +117,30 @@ extension ObjectiveCRootSpyable {
             indirectSpy_sampleInstanceMethod(input) : WellKnownMethodReturnValues.commonSpyValue.rawValue
     }
 
+}
+
+
+// MARK: Spy method forwarding
+
+extension ObjectiveCRootSpyable {
+
+    fileprivate static var ObjectiveCRootSpyableSelectorForwarding = [
+        SampleMethodSelectors.originalClassMethod: false,
+        SampleMethodSelectors.originalInstanceMethod: false
+    ]
+
+    class func forwardsSpyMethodCalls(for selector: Selector) -> Bool {
+        return ObjectiveCRootSpyableSelectorForwarding[selector] ?? false
+    }
+
+    class func setSpyMethodForwarding(for selector: Selector, forwards: Bool) {
+        ObjectiveCRootSpyableSelectorForwarding[selector] = forwards
+    }
+
+    class func setAllSpyMethodForwarding(to forwards: Bool) {
+        ObjectiveCRootSpyableSelectorForwarding.keys.forEach { key in
+            ObjectiveCRootSpyableSelectorForwarding[key] = forwards
+        }
+    }
+    
 }

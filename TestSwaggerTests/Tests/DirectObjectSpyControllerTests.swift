@@ -1,5 +1,5 @@
 //
-//  DirectInvocationObjectSpyingTests.swift
+//  DirectObjectSpyControllerTests.swift
 //  TestSwagger
 //
 //  Created by Sam Odom on 1/25/17.
@@ -11,13 +11,11 @@ import FoundationSwagger
 import TestSwagger
 
 
-class DirectInvocationObjectSpyingTests: SpyTestCase {
+class DirectObjectSpyControllerTests: SpyTestCase {
 
-    override var vector: SpyVector {
-        return .direct(rootSpyableClass)
-    }
-
+    override var vector: SpyVector { return .direct }
     override var methodType: MethodType { return .instance }
+
 
     // MARK: - Swift spies
 
