@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A01761F1E51416C001CFE72 /* SpyEvidenceReferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF059871E45103B000BE6C5 /* SpyEvidenceReferenceTests.swift */; };
 		0A2235E71E4047540031BA61 /* SampleTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2235DE1E4047540031BA61 /* SampleTypes.framework */; };
 		0A2235EE1E4047540031BA61 /* SampleTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A2235E01E4047540031BA61 /* SampleTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0A2235F81E4047700031BA61 /* SampleSpyableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2235F61E4047700031BA61 /* SampleSpyableTests.swift */; };
@@ -34,7 +35,6 @@
 		0A22363C1E4125A90031BA61 /* TestSwagger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFFECE31DFE256100D4409C /* TestSwagger.framework */; };
 		0AF059841E4409B4000BE6C5 /* SpyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF059831E4409B4000BE6C5 /* SpyController.swift */; };
 		0AF059861E44179C000BE6C5 /* SpyEvidenceReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF059851E44179C000BE6C5 /* SpyEvidenceReference.swift */; };
-		0AF059881E45103B000BE6C5 /* SpyEvidenceReferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF059871E45103B000BE6C5 /* SpyEvidenceReferenceTests.swift */; };
 		0AFFECF41DFE256100D4409C /* TestSwagger.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AFFECE61DFE256100D4409C /* TestSwagger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C4A58F10E17753DCB9A10FC /* Pods_TestSwaggerWorkspace_SampleTypesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D04DC772E28BFDB567A057 /* Pods_TestSwaggerWorkspace_SampleTypesTests.framework */; };
 		4E72DC0F6B46E5C79D036940 /* Pods_TestSwaggerWorkspace_TestSwaggerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7EC823623E3B35C758070C /* Pods_TestSwaggerWorkspace_TestSwaggerTests.framework */; };
@@ -670,10 +670,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A2236391E4051910031BA61 /* SpyTestOutputExpectations.swift in Sources */,
-				0AF059881E45103B000BE6C5 /* SpyEvidenceReferenceTests.swift in Sources */,
 				0A2236171E4048010031BA61 /* SpyableGeneralEvidenceTests.swift in Sources */,
 				0A2236201E404F120031BA61 /* SpyTestCase.swift in Sources */,
 				0A2236151E4048010031BA61 /* IndirectObjectSpyControllerTests.swift in Sources */,
+				0A01761F1E51416C001CFE72 /* SpyEvidenceReferenceTests.swift in Sources */,
 				0A2236121E4048010031BA61 /* DirectClassSpyControllerTests.swift in Sources */,
 				0A2236131E4048010031BA61 /* DirectObjectSpyControllerTests.swift in Sources */,
 				0A2236381E4051910031BA61 /* SpyTestCaseIndirectInvocationExpectations.swift in Sources */,

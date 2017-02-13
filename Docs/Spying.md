@@ -116,9 +116,9 @@ As a convenience for custom spies, evidence cleanup is automatic as long as the 
 Since evidence can be stored using either object association or filesystem persistence, a single enumerated type is provided for specifying any type of evidence reference.
 
 ```swift
-enum SpyEvidenceKey {
-	case association(ObjectAssociationKey)
-	case serialization(URL)
+enum EvidenceReference {
+	case association(key: ObjectAssociationKey)
+	case serialization(path: String)
 }
 ```
 
