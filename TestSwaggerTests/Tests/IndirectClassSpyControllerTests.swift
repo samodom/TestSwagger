@@ -7,17 +7,22 @@
 //
 
 import XCTest
+import FoundationSwagger
 import SampleTypes
 import TestSwagger
 
 
-class IndirectClassSpyControllerTests: SpyTestCase {
+class IndirectClassSpyControllerTests: SpyControllerTestCase {
 
     override var vector: SpyVector {
         return .indirect
     }
 
+    override var methodType: MethodType {
+        return .`class`
+    }
 
+    
     // MARK: - Swift spies
 
     func testCannotCreateSwiftSpyWithRootSwiftClass() {

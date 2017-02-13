@@ -22,6 +22,7 @@
 		0A2236171E4048010031BA61 /* SpyableGeneralEvidenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236071E4048010031BA61 /* SpyableGeneralEvidenceTests.swift */; };
 		0A2236201E404F120031BA61 /* SpyTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A22361F1E404F120031BA61 /* SpyTestCase.swift */; };
 		0A2236221E404FD30031BA61 /* SpyableTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236211E404FD30031BA61 /* SpyableTestCase.swift */; };
+		0A2236201E404F120031BA61 /* SpyControllerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A22361F1E404F120031BA61 /* SpyControllerTestCase.swift */; };
 		0A22362A1E4050D00031BA61 /* Evidence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236261E4050D00031BA61 /* Evidence.swift */; };
 		0A22362B1E4050D00031BA61 /* EvidencePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236271E4050D00031BA61 /* EvidencePersistence.swift */; };
 		0A22362C1E4050D00031BA61 /* Spy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2236281E4050D00031BA61 /* Spy.swift */; };
@@ -83,6 +84,7 @@
 		0A2236071E4048010031BA61 /* SpyableGeneralEvidenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyableGeneralEvidenceTests.swift; sourceTree = "<group>"; };
 		0A22361F1E404F120031BA61 /* SpyTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyTestCase.swift; sourceTree = "<group>"; };
 		0A2236211E404FD30031BA61 /* SpyableTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyableTestCase.swift; sourceTree = "<group>"; };
+		0A22361F1E404F120031BA61 /* SpyControllerTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyControllerTestCase.swift; sourceTree = "<group>"; };
 		0A2236261E4050D00031BA61 /* Evidence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Evidence.swift; sourceTree = "<group>"; };
 		0A2236271E4050D00031BA61 /* EvidencePersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvidencePersistence.swift; sourceTree = "<group>"; };
 		0A2236281E4050D00031BA61 /* Spy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spy.swift; sourceTree = "<group>"; };

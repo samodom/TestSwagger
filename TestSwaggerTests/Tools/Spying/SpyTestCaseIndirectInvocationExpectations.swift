@@ -1,5 +1,5 @@
 //
-//  SpyTestCaseIndirectInvocationExpectations.swift
+//  SpyControllerTestCaseIndirectInvocationExpectations.swift
 //  TestSwagger
 //
 //  Created by Sam Odom on 1/8/17.
@@ -11,7 +11,7 @@ import SampleTypes
 import TestSwagger
 
 
-extension SpyTestCase {
+extension SpyControllerTestCase {
 
     func createSwiftIndirectInvocationClassSpyExpectations() -> [SpyTestOutputExpectation] {
         return [

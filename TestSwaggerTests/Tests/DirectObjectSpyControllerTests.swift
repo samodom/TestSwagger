@@ -11,7 +11,7 @@ import FoundationSwagger
 import TestSwagger
 
 
-class DirectObjectSpyControllerTests: SpyTestCase {
+class DirectObjectSpyControllerTests: SpyControllerTestCase {
 
     override var vector: SpyVector { return .direct }
     override var methodType: MethodType { return .instance }

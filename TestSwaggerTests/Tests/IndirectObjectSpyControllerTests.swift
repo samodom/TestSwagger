@@ -12,7 +12,7 @@ import FoundationSwagger
 import TestSwagger
 
 
-class IndirectObjectSpyControllerTests: SpyTestCase {
+class IndirectObjectSpyControllerTests: SpyControllerTestCase {
 
     override var vector: SpyVector {
         return .indirect

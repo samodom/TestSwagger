@@ -7,16 +7,20 @@
 //
 
 import XCTest
+import FoundationSwagger
 import SampleTypes
 import TestSwagger
 
 
-class DirectClassSpyControllerTests: SpyTestCase {
+class DirectClassSpyControllerTests: SpyControllerTestCase {
 
     override var vector: SpyVector {
         return .direct
     }
 
+    override var methodType: MethodType {
+        return .`class`
+    }
 
     // MARK: - Swift spies
 
