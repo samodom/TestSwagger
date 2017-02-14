@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0AFFECE21DFE256100D4409C"
-               BuildableName = "TestSwagger.framework"
-               BlueprintName = "TestSwagger"
+               BlueprintIdentifier = "0A2235DD1E4047540031BA61"
+               BuildableName = "SampleTypes.framework"
+               BlueprintName = "SampleTypes"
                ReferencedContainer = "container:TestSwagger.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,24 +26,20 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0AFFECEB1DFE256100D4409C"
-               BuildableName = "TestSwaggerTests.xctest"
-               BlueprintName = "TestSwaggerTests"
+               BlueprintIdentifier = "0A2235E51E4047540031BA61"
+               BuildableName = "SampleTypesTests.xctest"
+               BlueprintName = "SampleTypesTests"
                ReferencedContainer = "container:TestSwagger.xcodeproj">
             </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "SpyControllerTestCase">
-               </Test>
-               <Test
-                  Identifier = "SpyEvidenceTestCase">
+                  Identifier = "SpyableTestCase">
                </Test>
             </SkippedTests>
          </TestableReference>
@@ -51,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0AFFECE21DFE256100D4409C"
-            BuildableName = "TestSwagger.framework"
-            BlueprintName = "TestSwagger"
+            BlueprintIdentifier = "0A2235DD1E4047540031BA61"
+            BuildableName = "SampleTypes.framework"
+            BlueprintName = "SampleTypes"
             ReferencedContainer = "container:TestSwagger.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -73,9 +69,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0AFFECE21DFE256100D4409C"
-            BuildableName = "TestSwagger.framework"
-            BlueprintName = "TestSwagger"
+            BlueprintIdentifier = "0A2235DD1E4047540031BA61"
+            BuildableName = "SampleTypes.framework"
+            BlueprintName = "SampleTypes"
             ReferencedContainer = "container:TestSwagger.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -91,9 +87,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0AFFECE21DFE256100D4409C"
-            BuildableName = "TestSwagger.framework"
-            BlueprintName = "TestSwagger"
+            BlueprintIdentifier = "0A2235DD1E4047540031BA61"
+            BuildableName = "SampleTypes.framework"
+            BlueprintName = "SampleTypes"
             ReferencedContainer = "container:TestSwagger.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

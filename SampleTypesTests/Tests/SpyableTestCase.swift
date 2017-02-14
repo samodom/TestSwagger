@@ -1,6 +1,7 @@
+
 //
 //  SpyableTestCase.swift
-//  TestSwagger
+//  SampleTypes
 //
 //  Created by Sam Odom on 12/13/16.
 //  Copyright © 2016 Swagger Soft. All rights reserved.
@@ -9,12 +10,12 @@
 import XCTest
 import FoundationSwagger
 import TestSwagger
+import SampleTypes
 
 
 class SpyableTestCase: XCTestCase {
 
     let fileManager = FileManager.default
-    let sampleSpyable = SampleSpyable()
 
     let sampleStringEvidence = "Celiac cornhole vice vegan unicorn umami kale chips forage four dollar"
     var sampleDataEvidence: Data!
@@ -28,6 +29,8 @@ class SpyableTestCase: XCTestCase {
     private let sampleKeyString = UUIDKeyString()
     var sampleKey: ObjectAssociationKey!
 
+    let sampleSpyable = SwiftRootSpyable()
+
     override func setUp() {
         super.setUp()
 
@@ -37,7 +40,6 @@ class SpyableTestCase: XCTestCase {
         sampleEvidenceUrl = expectedEvidenceDirectoryUrl
             .appendingPathComponent(sampleEvidenceFilename, isDirectory: false)
         sampleKey = ObjectAssociationKey(sampleKeyString)
-
     }
 
     override func tearDown() {

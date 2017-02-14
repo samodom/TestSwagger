@@ -1,11 +1,11 @@
-source 'git@github.com:samodom/internal-cocoapod-specs.git'
+platform :ios, '8.0'
 
-target 'TestSwagger' do
+abstract_target 'TestSwaggerWorkspace' do
   use_frameworks!
   pod 'FoundationSwagger'
-  
-  target 'TestSwaggerTests' do
-    inherit! :search_paths
-  end
+
+  target 'TestSwagger'
+  target 'TestSwaggerTests'
+  target 'SampleTypesTests'
 end
 
