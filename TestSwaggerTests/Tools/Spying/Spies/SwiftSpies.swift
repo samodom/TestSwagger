@@ -10,7 +10,7 @@ import TestSwagger
 import SampleTypes
 import FoundationSwagger
 
-extension SwiftRootSpyable: Spyable {}
+extension SwiftRootSpyable: SpyableObject, SpyableClass {}
 
 
 // MARK: Spy controllers

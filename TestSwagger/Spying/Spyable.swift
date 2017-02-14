@@ -8,5 +8,9 @@
 
 import FoundationSwagger
 
-/// A protocol for classes with methods and/or properties upon which one would like to spy.
-public protocol Spyable: class, ObjectAssociating {}
+/// A protocol for classes with instance methods and/or properties upon which one would like to spy.
+public protocol SpyableObject: class, AssociatingObject {}
+
+
+/// A protocol for classes with class methods and/or properties upon which one would like to spy.
+public protocol SpyableClass: class, AssociatingClass {}

@@ -55,7 +55,7 @@ Indirect-invocation spying is used to ensure that a subclass overriding an inher
 
 ### Subjects
 
-Spies have *subjects* (or targets) upon which they spy for method swizzling and evidence cleanup.  Depending on whether the spied methods are instance or class methods, spies are created with object instances or with classes.  Some common subject functionality is available by implementing the `Spyable` protocol.
+Spies have *subjects* (or targets) upon which they spy for method swizzling and evidence cleanup.  Depending on whether the spied methods are instance or class methods, spies are created with object instances or with classes.  Some common subject functionality is available by implementing the `SpyableObject` and `SpyableClass` protocols.
 
 
 ### Spy methods
@@ -69,7 +69,7 @@ Evidence of calls being made to methods can be captured by using *object associa
 
 > Example:
 >
-> Direct-invocation spying on `MyClass.someInstanceMethod(input:)` would suggest the introduction of two new instance properties on `MyClass` such as `someInstanceMethodCalled: Bool` and `someInstanceMethodInput: InputType?` which would be accessed using the subject instance.  The boolean flag indicating whether the method has been called would be stored on the subject using object association.  The input to the method would be stored using object association or file persistence, depending on the type and size of the input.
+> Direct-invocation spying on `MyClass.someInstanceMethod(input:)` would suggest the introduction of two new instance properties on `MyClass` such as `someInstanceMethodCalled: Bool` and `someInstanceMethodInput: InputType?` which would be accessed using the subject instance.  The boolean flag indicating whether the method has been called would be stored on the subject using object association.  The input to the method would be stored using object association or file persistence, depending on the type and size of the input.  The same technique is used for class methods.
 
 
 #### Unique association keys
@@ -86,16 +86,40 @@ In order to allocate memory with unique content that can be used as an object as
 
 #### Persisting evidence to disk
 
-Evidence stored to file is associated with a simple file URL.  Several convenience methods are included in the `Spyable` protocol implementation for simplifying the persistence of raw data and large strings:
+Evidence stored to file is associated with a simple file path.
+
+
+#### Common evidence reference
+
+Since evidence can be stored using either object association or filesystem persistence, a single enumerated type is provided for specifying any type of evidence reference.
 
 ```swift
-func persistDataEvidence(_: Data, at: URL)
-func persistStringEvidence(_: String, at: URL)
+enum EvidenceReference {
+	case association(key: ObjectAssociationKey)
+	case serialization(path: String)
+}
+```
 
-func retrievePersistedDataEvidence(at: URL) -> Data?
-func retrievePersistedStringEvidence(at: URL) -> Data?
 
-func clearPersistedEvidence(at: URL)  /// for any type of persisted evidence
+#### Evidence methods
+
+Several convenience methods are included in the `SpyableObject` and `SpyableClass` protocol implementations for simplifying the persistence, retrieval and clearing of evidence.  Any filesystem errors encountered are ignored so that these methods fail silently.
+
+
+```swift
+extension SpyableObject {
+	func saveEvidence(_: Any, with: EvidenceReference)
+	func loadEvidence(with: EvidenceReference) -> Any?
+	func removeEvidence(with: EvidenceReference)
+}
+```
+
+```swift
+extension SpyableClass {
+	static func saveEvidence(_: Any, with: EvidenceReference)
+	static func loadEvidence(with: EvidenceReference) -> Any?
+	static func removeEvidence(with: EvidenceReference)
+}
 ```
 
 
@@ -109,18 +133,6 @@ The mechanism behind spying is *method swizzling* wherein a method's implementat
 ### Evidence cleanup
 
 As a convenience for custom spies, evidence cleanup is automatic as long as the spyable type provides all references to the evidence.  For this reason, spy construction requires these references.
-
-
-#### Common evidence reference
-
-Since evidence can be stored using either object association or filesystem persistence, a single enumerated type is provided for specifying any type of evidence reference.
-
-```swift
-enum EvidenceReference {
-	case association(key: ObjectAssociationKey)
-	case serialization(path: String)
-}
-```
 
 
 ## Defining a spy
@@ -149,6 +161,7 @@ A spy subject must meet different requirements depending upon the type of spy:
 | Direct/class | The subject is an **class**  that is either the root spyable class or one of its subclasses. |
 | Indirect/instance | The subject is an **object instance of a subclass** of the root spyable class. |
 | Indirect/class | The subject is a **subclass** of the root spyable class. |
+
 
 ### Construction
 

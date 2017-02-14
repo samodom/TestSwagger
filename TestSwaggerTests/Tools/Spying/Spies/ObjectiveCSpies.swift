@@ -10,7 +10,7 @@ import TestSwagger
 import SampleTypes
 import FoundationSwagger
 
-extension ObjectiveCRootSpyable: Spyable {}
+extension ObjectiveCRootSpyable: SpyableObject, SpyableClass {}
 
 
 // MARK: Spy controllers

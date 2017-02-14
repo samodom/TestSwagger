@@ -40,13 +40,10 @@
             </BuildableReference>
             <SkippedTests>
                <Test
-               <Test
                   Identifier = "SpyControllerTestCase">
                </Test>
-                  Identifier = "SpyTestCase">
-               </Test>
                <Test
-                  Identifier = "SpyableTestCase">
+                  Identifier = "SpyEvidenceTestCase">
                </Test>
             </SkippedTests>
          </TestableReference>
