@@ -14,16 +14,13 @@ Spying
   1. [Evidence cleanup](#evidence-cleanup)
 1. [Defining a spy](#constructing-a-spy)
   1. [Spy controllers](#spy-controllers)
-    1. [Root spyable class](#root-spyable-class)
-    1. [Vector](#vector)
-    1. [Selectors](#selectors)
-  1. [Spy constructors](#spy-constructors)
+  1. [Construction](#construction)
     1. [Subject](#subject)
     1. [Construction](#construction)
 1. [Using spies](#using-spies)
   1. [Context-based spying](#context-based-spying)
   1. [Switched spying](#switched-spying)
-
+  1. [Method forwarding](#method-forwarding)
 
 ## What is spying?
 
@@ -148,6 +145,7 @@ A spy controller is a static group of values that provide information used in th
 * the **spy vector** (for specifying either direct- or indirect-invocation spying)
 * the pair of **selectors** identifying both the spyable and spy methods along with their method type (class or instance), captured in a simple structure type called `SpyCoselectors`
 * the complete set of references to spy evidence expected to be collected on any call to the original method: see [Evidence References](#common-evidence-reference)
+* the forwarding behavior to be used when calls are captured by the spy method: see [Method Forwarding Behavior](#method-forwarding-behavior)
 
 
 ### Spy constructors
@@ -210,3 +208,17 @@ Spies provide two options for executing test code while spying.  The first is wi
 > 	  /// and assertions here
 > }
 > ```
+
+### Method forwarding
+
+Spy controllers are responsible for providing the expected method forwarding behavior in its spy methods.  Controllers may be designed to always forward calls, never forward calls or permit user customization.  The `methodForwardingBehavior` property on `SpyController` is a value of the type `MethodForwardingBehavior`.
+
+```swift
+public enum MethodForwardingBehavior {
+    case always
+    case never
+    case custom(Bool)
+
+    public var forwards: Bool  /// read-only
+}
+```
