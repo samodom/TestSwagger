@@ -15,11 +15,14 @@ public protocol SpyController {
     /// The original class defining a test subject's spyable method.
     static var rootSpyableClass: AnyClass { get }
 
+
     /// The type of spy mechanism being used: direct-invocation or indirect-invocation.
     static var vector: SpyVector { get }
 
+
     /// The selectors for the original and spy methods along with the type of the methods.
     static var coselectors: SpyCoselectors { get }
+
 
     /// A set of evidence reference items used in cleaning up evidence after spying.
     static var evidence: Set<SpyEvidenceReference> { get }
@@ -30,7 +33,7 @@ public protocol SpyController {
 public extension SpyController {
 
     /// Common spy-creation method
-    /// - parameter on: The subject on which one intends to spy.
+    /// - parameter subject: The subject on which one intends to spy.
     /// - returns: A new spy on the subject or nil if the subject is invalid.
     public static func createSpy(on subject: Any) -> Spy? {
 
@@ -45,7 +48,7 @@ public extension SpyController {
             alternateSelector: coselectors.spy
         )
 
-        return Spy(subject: subject, surrogate: surrogate, evidence: [])
+        return Spy(subject: subject, surrogate: surrogate, evidence: evidence)
     }
 
 }

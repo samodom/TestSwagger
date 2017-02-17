@@ -40,9 +40,6 @@
             </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "SpyControllerTestCase">
-               </Test>
-               <Test
                   Identifier = "SpyEvidenceTestCase">
                </Test>
             </SkippedTests>

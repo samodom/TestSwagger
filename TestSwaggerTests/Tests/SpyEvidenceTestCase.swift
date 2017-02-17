@@ -11,13 +11,17 @@ import FoundationSwagger
 import TestSwagger
 
 
+let TemporaryDirectoryPath = NSTemporaryDirectory()
+let TemporaryDirectoryUrl = NSURL(string: TemporaryDirectoryPath)! as URL
+
+
 class SpyEvidenceTestCase: XCTestCase {
 
     private let keyString = UUIDKeyString()
     var key: ObjectAssociationKey!
     var associationReference: SpyEvidenceReference!
 
-    let goodPath = DocumentsDirectoryURL.appendingPathComponent("sampleEvidence").path
+    let goodPath = TemporaryDirectoryUrl.appendingPathComponent("sampleEvidence").path
     var goodSerializationReference: SpyEvidenceReference!
 
     let badPath = "http://www.example.com/"

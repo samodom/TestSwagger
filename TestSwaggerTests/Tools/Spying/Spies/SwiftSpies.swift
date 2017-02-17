@@ -10,7 +10,7 @@ import TestSwagger
 import SampleTypes
 import FoundationSwagger
 
-extension SwiftRootSpyable: SpyableObject, SpyableClass {}
+extension SwiftRootSpyable: SampleSpyableObject, SampleSpyableClass {}
 
 
 // MARK: Spy controllers
@@ -21,28 +21,28 @@ public extension SwiftRootSpyable {
         public static let rootSpyableClass: AnyClass = SwiftRootSpyable.self
         public static let vector = SpyVector.direct
         public static let coselectors = SampleSpyCoselectors.directClassSpy
-        public static let evidence: Set<SpyEvidenceReference> = []
+        public static let evidence: Set<SpyEvidenceReference> = SampleReferences
     }
 
     public enum DirectObjectSpyController: SpyController {
         public static let rootSpyableClass: AnyClass = SwiftRootSpyable.self
         public static let vector = SpyVector.direct
         public static let coselectors = SampleSpyCoselectors.directObjectSpy
-        public static let evidence: Set<SpyEvidenceReference> = []
+        public static let evidence: Set<SpyEvidenceReference> = SampleReferences
     }
 
     public enum IndirectClassSpyController: SpyController {
         public static let rootSpyableClass: AnyClass = SwiftRootSpyable.self
         public static let vector = SpyVector.indirect
         public static let coselectors = SampleSpyCoselectors.indirectClassSpy
-        public static let evidence: Set<SpyEvidenceReference> = []
+        public static let evidence: Set<SpyEvidenceReference> = SampleReferences
     }
 
     public enum IndirectObjectSpyController: SpyController {
         public static let rootSpyableClass: AnyClass = SwiftRootSpyable.self
         public static let vector = SpyVector.indirect
         public static let coselectors = SampleSpyCoselectors.indirectObjectSpy
-        public static let evidence: Set<SpyEvidenceReference> = []
+        public static let evidence: Set<SpyEvidenceReference> = SampleReferences
     }
     
 }
@@ -99,21 +99,33 @@ fileprivate extension SwiftRootSpyable {
 extension SwiftRootSpyable {
 
     dynamic class func directSpy_sampleClassMethod(_ input: String) -> Int {
+        sampleClassMethodCalledAssociated = true
+        sampleClassMethodCalledSerialized = true
+
         return forwardsSpyMethodCalls(for: SampleMethodSelectors.originalClassMethod) ?
             directSpy_sampleClassMethod(input) : WellKnownMethodReturnValues.commonSpyValue.rawValue
     }
 
     dynamic func directSpy_sampleInstanceMethod(_ input: String) -> Int {
+        sampleInstanceMethodCalledAssociated = true
+        sampleInstanceMethodCalledSerialized = true
+
         return SwiftRootSpyable.forwardsSpyMethodCalls(for: SampleMethodSelectors.originalInstanceMethod) ?
             directSpy_sampleInstanceMethod(input) : WellKnownMethodReturnValues.commonSpyValue.rawValue
     }
 
     dynamic class func indirectSpy_sampleClassMethod(_ input: String) -> Int {
+        sampleClassMethodCalledAssociated = true
+        sampleClassMethodCalledSerialized = true
+
         return forwardsSpyMethodCalls(for: SampleMethodSelectors.originalClassMethod) ?
             indirectSpy_sampleClassMethod(input) : WellKnownMethodReturnValues.commonSpyValue.rawValue
     }
 
     dynamic func indirectSpy_sampleInstanceMethod(_ input: String) -> Int {
+        sampleInstanceMethodCalledAssociated = true
+        sampleInstanceMethodCalledSerialized = true
+
         return SwiftRootSpyable.forwardsSpyMethodCalls(for: SampleMethodSelectors.originalInstanceMethod) ?
             indirectSpy_sampleInstanceMethod(input) : WellKnownMethodReturnValues.commonSpyValue.rawValue
     }

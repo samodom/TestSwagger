@@ -9,78 +9,88 @@
 import XCTest
 import SampleTypes
 import FoundationSwagger
-import TestSwagger
+@testable import TestSwagger
+
+
+private let dummyKeyString = UUIDKeyString()
+let dummyKey = ObjectAssociationKey(dummyKeyString)
+let dummyPath = TemporaryDirectoryUrl.appendingPathComponent("decoyFile").path
 
 
 class SpyControllerTestCase: XCTestCase {
 
-    enum SpyLanguage {
-        case swift
-        case objectiveC
+    var currentVariant: SpyTestVariant!
+    var currentCodeSource: CodeSource!
+    var currentExpectation: SpyTestOutputExpectation!
+    var spyExpectations: [SpyTestOutputExpectation]!
+
+    let decoyEvidence: Set = [
+        SpyEvidenceReference(key: dummyKey),
+        SpyEvidenceReference(path: dummyPath)
+    ]
+
+    var subject: Any {
+        return currentExpectation.subject
     }
 
-    var inContext = false
-    var language = SpyLanguage.swift
-
-    var vector: SpyVector {
-        fatalError("Each spy test case subclass should define its own spy vector")
+    var subjectAsSpyableObject: SampleSpyableObject? {
+        return subject as? SampleSpyableObject
     }
 
-    var methodType: MethodType {
-        fatalError("Each spy test case subclass should define its own method type")
+    var subjectAsSpyableClass: SampleSpyableClass.Type? {
+        return subject as? SampleSpyableClass.Type
     }
 
-    var rootSpyableClass: AnyClass {
-        switch language {
-        case .swift:
-            return SwiftRootSpyable.self
+    var spy: Spy {
+        return currentExpectation.spy
+    }
 
-        case .objectiveC:
-            return ObjectiveCRootSpyable.self
-        }
+    var evidence: Set<SpyEvidenceReference> {
+        return spy.evidence
     }
 
     var controller: SpyController.Type {
-        switch (language, vector, methodType) {
-        case (.swift, .direct, .class):
-            return SwiftRootSpyable.DirectClassSpyController.self
-
-        case (.swift, .direct, .instance):
-            return SwiftRootSpyable.DirectObjectSpyController.self
-
-        case (.swift, .indirect, .class):
-            return SwiftRootSpyable.IndirectClassSpyController.self
-
-        case (.swift, .indirect, .instance):
-            return SwiftRootSpyable.IndirectObjectSpyController.self
-
-        case (.objectiveC, .direct, .class):
-            return ObjectiveCRootSpyable.DirectClassSpyController.self
-
-        case (.objectiveC, .direct, .instance):
-            return ObjectiveCRootSpyable.DirectObjectSpyController.self
-
-        case (.objectiveC, .indirect, .class):
-            return ObjectiveCRootSpyable.IndirectClassSpyController.self
-
-        case (.objectiveC, .indirect, .instance):
-            return ObjectiveCRootSpyable.IndirectObjectSpyController.self
-        }
+        return currentVariant.controller
     }
 
-    var shouldForwardMethodCalls = false
-    var spyExpectations: [SpyTestOutputExpectation]!
+    var unforwardedOutput: Int? {
+        return currentVariant.unforwardedOutputValue
+    }
 
     override func tearDown() {
-        spyExpectations?.forEach { expectation in
-            expectation.spy.endSpying()
-        }
-
         setSpyMethodCallForwarding(to: false)
         setSpySuperclassMethodCalling(to: false)
 
         super.tearDown()
     }
+
+
+    func runSpyControllerTests(
+        for variant: SpyTestVariant,
+        inFile file: String = #file,
+        atLine line: UInt = #line
+        ) {
+
+        currentVariant = variant
+        currentCodeSource = CodeSource(file: file, line: line)
+        createSpyExpectations()
+
+        spyExpectations.forEach { expectation in
+            currentExpectation = expectation
+
+            createDecoyEvidence()
+
+            validateExpectation()
+            verifyEvidenceCleanup()
+
+            deleteAllEvidence()
+        }
+    }
+
+}
+
+
+fileprivate extension SpyControllerTestCase {
 
     func setSpyMethodCallForwarding(to shouldForward: Bool) {
         SwiftRootSpyable.setAllSpyMethodForwarding(to: shouldForward)
@@ -88,100 +98,156 @@ class SpyControllerTestCase: XCTestCase {
     }
 
     func setSpySuperclassMethodCalling(to shouldCall: Bool) {
-        SwiftOverriderOfInheritor.swiftOverriderOfInheritorCallsSuperclass = shouldCall
         SwiftOverrider.swiftOverriderCallsSuperclass = shouldCall
+        SwiftOverriderOfInheritor.swiftOverriderOfInheritorCallsSuperclass = shouldCall
         SwiftOverriderOfOverrider.swiftOverriderOfOverriderCallsSuperclass = shouldCall
 
-        ObjectiveCOverriderOfInheritorCallsSuperclass = ObjCBool(shouldCall)
         ObjectiveCOverriderCallsSuperclass = ObjCBool(shouldCall)
+        ObjectiveCOverriderOfInheritorCallsSuperclass = ObjCBool(shouldCall)
         ObjectiveCOverriderOfOverriderCallsSuperclass = ObjCBool(shouldCall)
     }
 
-}
-
-
-extension SpyControllerTestCase {
-
-    var unforwardedOutputValue: Int? {
-        return shouldForwardMethodCalls ? nil : WellKnownMethodReturnValues.commonSpyValue.rawValue
-    }
-
     func createSpyExpectations() {
+        setSpyMethodCallForwarding(to: currentVariant.forwardsCalls)
 
-        setSpyMethodCallForwarding(to: shouldForwardMethodCalls)
-
-        switch (language, vector, methodType) {
-        case (.swift, .direct(_), .`class`):
+        switch (currentVariant.language, currentVariant.vector, currentVariant.methodType) {
+        case (.swift, .direct, .`class`):
             spyExpectations = createSwiftDirectInvocationClassSpyExpectations()
 
-        case (.swift, .direct(_), .instance):
+        case (.swift, .direct, .instance):
             spyExpectations = createSwiftDirectInvocationObjectSpyExpectations()
 
-        case (.swift, .indirect(_), .`class`):
+        case (.swift, .indirect, .`class`):
             spyExpectations = createSwiftIndirectInvocationClassSpyExpectations()
 
-        case (.swift, .indirect(_), .instance):
+        case (.swift, .indirect, .instance):
             spyExpectations = createSwiftIndirectInvocationObjectSpyExpectations()
 
-        case (.objectiveC, .direct(_), .`class`):
+        case (.objectiveC, .direct, .`class`):
             spyExpectations = createObjectiveCDirectInvocationClassSpyExpectations()
 
-        case (.objectiveC, .direct(_), .instance):
+        case (.objectiveC, .direct, .instance):
             spyExpectations = createObjectiveCDirectInvocationObjectSpyExpectations()
 
-        case (.objectiveC, .indirect(_), .`class`):
+        case (.objectiveC, .indirect, .`class`):
             spyExpectations = createObjectiveCIndirectInvocationClassSpyExpectations()
 
-        case (.objectiveC, .indirect(_)  , .instance):
+        case (.objectiveC, .indirect, .instance):
             spyExpectations = createObjectiveCIndirectInvocationObjectSpyExpectations()
         }
 
         assert(!spyExpectations.isEmpty)
     }
 
-    func validateSpyExpectation(
-        _ expectation: SpyTestOutputExpectation,
-        inFile file: String = #file,
-        atLine line: UInt = #line
-        ) {
-
-        let output = executeSampleMethod(for: expectation)
-        if output != expectation.output {
-            recordFailure(
-                withDescription: methodSwizzlingErrorMessage(
-                    for: expectation,
-                    output: output
-                ),
-                inFile: file,
-                atLine: line,
-                expected: true
-            )
+    func createDecoyEvidence() {
+        decoyEvidence.forEach { reference in
+            subjectAsSpyableObject?.saveEvidence(true, with: reference)
+            subjectAsSpyableClass?.saveEvidence(true, with: reference)
         }
-
     }
 
-    private func executeSampleMethod(for expectation: SpyTestOutputExpectation) -> Int {
-        let spy = expectation.spy
+    func deleteAllEvidence() {
+        decoyEvidence.union(evidence).forEach { reference in
+            subjectAsSpyableObject?.removeEvidence(with: reference)
+            subjectAsSpyableClass?.removeEvidence(with: reference)
+        }
+    }
 
-        if inContext {
-            var output: Int?
+    func validateExpectation() {
+        let realOutput = executeSampleMethod()
+
+        if realOutput != currentExpectation.output {
+            recordFailure(
+                withDescription: methodSwizzlingErrorMessage(realOutput: realOutput),
+                at: currentCodeSource
+            )
+        }
+    }
+
+    private func executeSampleMethod() -> Int {
+        verifyEvidenceFlagsSet(to: false)
+
+        var output: Int!
+        if currentVariant.inContext {
             spy.spy {
-                output = expectation.executeSampleMethod()
+                output = currentExpectation.executeSampleMethod()
+                verifyEvidenceFlagsSet(to: true)
             }
-            return output!
         }
         else {
             spy.beginSpying()
-            let output = expectation.executeSampleMethod()
+            output = currentExpectation.executeSampleMethod()
+            verifyEvidenceFlagsSet(to: true)
             spy.endSpying()
-            return output
+        }
+
+        return output
+    }
+
+    private func methodSwizzlingErrorMessage(realOutput: Int) -> String {
+        let spyClassName = currentVariant.controller.rootSpyableClass.debugDescription()
+        let methodOrigin = currentVariant.forwardsCalls ? "original" : "spy"
+
+        return "The \(methodOrigin) method was not invoked: \(realOutput) != \(currentExpectation.output) for class \(spyClassName)"
+    }
+
+    func verifyEvidenceCleanup() {
+        evidence.forEach { reference in
+            if !evidenceWasRemoved(with: reference) {
+                let message = "Evidence should automatically be removed after spying is complete:\n"
+                    .appending(currentVariant.description)
+                recordFailure(withDescription: message, at: currentCodeSource)
+            }
+        }
+
+        decoyEvidence.forEach { reference in
+            if evidenceWasRemoved(with: reference) {
+                let message = "Evidence outside the scope of the spy controller should not be removed\n"
+                    .appending(currentVariant.description)
+                recordFailure(withDescription: message, at: currentCodeSource)
+            }
         }
     }
 
-    private func methodSwizzlingErrorMessage(for expectation: SpyTestOutputExpectation, output: Int) -> String {
-        let spyClassName = rootSpyableClass.debugDescription()
-        let methodOrigin = shouldForwardMethodCalls ? "original" : "spy"
-        return "The \(methodOrigin) method was not invoked: \(output) != \(expectation.output) for class \(spyClassName)"
+
+    private static let flagNotCapturedErrorMessage = "The evidence was not captured\n"
+    private static let flagNotClearedErrorMessage = "The evidence is not clear\n"
+    private static let nonSpyableSubjectErrorMessage = "Testing a non-spyable subject\n"
+
+    private func verifyEvidenceFlagsSet(to expectedFlag: Bool) {
+        let errorMessageHeader = expectedFlag ?
+            SpyControllerTests.flagNotCapturedErrorMessage :
+            SpyControllerTests.flagNotClearedErrorMessage
+        let errorMessage = errorMessageHeader.appending(currentVariant.description)
+
+        if let spyableObject = subjectAsSpyableObject {
+            if spyableObject.sampleInstanceMethodCalledAssociated != expectedFlag ||
+                spyableObject.sampleInstanceMethodCalledSerialized != expectedFlag {
+                recordFailure(withDescription: errorMessage, at: currentCodeSource)
+            }
+        }
+        else if let spyableClass = subjectAsSpyableClass {
+            if spyableClass.sampleClassMethodCalledAssociated != expectedFlag ||
+                spyableClass.sampleClassMethodCalledSerialized != expectedFlag {
+
+                recordFailure(withDescription: errorMessage, at: currentCodeSource)
+            }
+        }
+        else {
+            fatalError(SpyControllerTests.nonSpyableSubjectErrorMessage)
+        }
+    }
+
+    private func evidenceWasRemoved(with reference: SpyEvidenceReference) -> Bool {
+        if let spyableObject = subjectAsSpyableObject {
+            return spyableObject.loadEvidence(with: reference) == nil
+        }
+        else if let spyableClass = subjectAsSpyableClass {
+            return spyableClass.loadEvidence(with: reference) == nil
+        }
+        else {
+            fatalError(SpyControllerTests.nonSpyableSubjectErrorMessage)
+        }
     }
 
 }

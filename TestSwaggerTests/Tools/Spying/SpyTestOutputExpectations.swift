@@ -6,10 +6,15 @@
 //  Copyright © 2017 Swagger Soft. All rights reserved.
 //
 
-import TestSwagger
+@testable import TestSwagger
 
 struct SpyTestOutputExpectation {
     let spy: Spy
     let executeSampleMethod: () -> Int
     let output: Int
+
+    var subject: Any {
+        return spy.subject
+    }
+
 }

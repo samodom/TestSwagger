@@ -18,37 +18,37 @@ extension SpyControllerTestCase {
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: SwiftRootSpyable.self)!,
                 executeSampleMethod: { SwiftRootSpyable.sampleClassMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: SwiftInheritor.self)!,
                 executeSampleMethod: { SwiftInheritor.sampleClassMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: SwiftInheritorOfInheritor.self)!,
                 executeSampleMethod: { SwiftInheritorOfInheritor.sampleClassMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: SwiftOverriderOfInheritor.self)!,
                 executeSampleMethod: { SwiftOverriderOfInheritor.sampleClassMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.overriddenAtLevel2.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.overriddenAtLevel2.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: SwiftOverrider.self)!,
                 executeSampleMethod: { SwiftOverrider.sampleClassMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.overriddenAtLevel1.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.overriddenAtLevel1.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: SwiftInheritorOfOverrider.self)!,
                 executeSampleMethod: { SwiftInheritorOfOverrider.sampleClassMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.overriddenAtLevel1.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.overriddenAtLevel1.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: SwiftOverriderOfOverrider.self)!,
                 executeSampleMethod: { SwiftOverriderOfOverrider.sampleClassMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.overriddenAtLevel2.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.overriddenAtLevel2.rawValue
             )
         ]
     }
@@ -66,37 +66,37 @@ extension SpyControllerTestCase {
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: root)!,
                 executeSampleMethod: { root.sampleInstanceMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: inheritor)!,
                 executeSampleMethod: { inheritor.sampleInstanceMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: inheritorOfInheritor)!,
                 executeSampleMethod: { inheritorOfInheritor.sampleInstanceMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: overriderOfInheritor)!,
                 executeSampleMethod: { overriderOfInheritor.sampleInstanceMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.overriddenAtLevel2.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.overriddenAtLevel2.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: overrider)!,
                 executeSampleMethod: { overrider.sampleInstanceMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.overriddenAtLevel1.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.overriddenAtLevel1.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: inheritorOfOverrider)!,
                 executeSampleMethod: { inheritorOfOverrider.sampleInstanceMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.overriddenAtLevel1.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.overriddenAtLevel1.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: overriderOfOverrider)!,
                 executeSampleMethod: { overriderOfOverrider.sampleInstanceMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.overriddenAtLevel2.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.overriddenAtLevel2.rawValue
             )
         ]
     }
@@ -106,37 +106,37 @@ extension SpyControllerTestCase {
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: ObjectiveCRootSpyable.self)!,
                 executeSampleMethod: { ObjectiveCRootSpyable.sampleClassMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: ObjectiveCInheritor.self)!,
                 executeSampleMethod: { ObjectiveCInheritor.sampleClassMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: ObjectiveCInheritorOfInheritor.self)!,
                 executeSampleMethod: { ObjectiveCInheritorOfInheritor.sampleClassMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: ObjectiveCOverriderOfInheritor.self)!,
                 executeSampleMethod: { ObjectiveCOverriderOfInheritor.sampleClassMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.overriddenAtLevel2.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.overriddenAtLevel2.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: ObjectiveCOverrider.self)!,
                 executeSampleMethod: { ObjectiveCOverrider.sampleClassMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.overriddenAtLevel1.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.overriddenAtLevel1.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: ObjectiveCInheritorOfOverrider.self)!,
                 executeSampleMethod: { ObjectiveCInheritorOfOverrider.sampleClassMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.overriddenAtLevel1.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.overriddenAtLevel1.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: ObjectiveCOverriderOfOverrider.self)!,
                 executeSampleMethod: { ObjectiveCOverriderOfOverrider.sampleClassMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.overriddenAtLevel2.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.overriddenAtLevel2.rawValue
             )
         ]
     }
@@ -154,37 +154,37 @@ extension SpyControllerTestCase {
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: root)!,
                 executeSampleMethod: { root.sampleInstanceMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: inheritor)!,
                 executeSampleMethod: { inheritor.sampleInstanceMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: inheritorOfInheritor)!,
                 executeSampleMethod: { inheritorOfInheritor.sampleInstanceMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.definedAtRoot.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: overriderOfInheritor)!,
                 executeSampleMethod: { overriderOfInheritor.sampleInstanceMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.overriddenAtLevel2.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.overriddenAtLevel2.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: overrider)!,
                 executeSampleMethod: { overrider.sampleInstanceMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.overriddenAtLevel1.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.overriddenAtLevel1.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: inheritorOfOverrider)!,
                 executeSampleMethod: { inheritorOfOverrider.sampleInstanceMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.overriddenAtLevel1.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.overriddenAtLevel1.rawValue
             ),
             SpyTestOutputExpectation(
                 spy: controller.createSpy(on: overriderOfOverrider)!,
                 executeSampleMethod: { overriderOfOverrider.sampleInstanceMethod("") },
-                output: unforwardedOutputValue ?? WellKnownMethodReturnValues.overriddenAtLevel2.rawValue
+                output: unforwardedOutput ?? WellKnownMethodReturnValues.overriddenAtLevel2.rawValue
             )
         ]
     }
