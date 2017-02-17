@@ -27,6 +27,19 @@ public protocol SpyController {
     /// A set of evidence reference items used in cleaning up evidence after spying.
     static var evidence: Set<SpyEvidenceReference> { get }
 
+
+    /// Method-forwarding behavior to be used by spy methods.
+    static var forwardingBehavior: MethodForwardingBehavior { get }
+
+}
+
+
+/// A specialized type of spy controller that allows customization of its method forwarding behavior.
+public protocol CustomForwardableSpyController: SpyController {
+
+    /// Customizable method-forwarding behavior to be used by spy methods.
+    static var forwardingBehavior: MethodForwardingBehavior { get set }
+
 }
 
 
