@@ -1,6 +1,9 @@
 TestSwagger Changelog
 =====================
 
+### v0.1.3 (February 17, 2017)
+ - Added spy method forwarding behavior
+
 ### v0.1.2 (February 17, 2017)
  - Added CodeSource sructure and failure-recording methods
  - Added automatic evidence clean up to spies

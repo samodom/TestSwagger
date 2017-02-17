@@ -93,8 +93,15 @@ class SpyControllerTestCase: XCTestCase {
 fileprivate extension SpyControllerTestCase {
 
     func setSpyMethodCallForwarding(to shouldForward: Bool) {
-        SwiftRootSpyable.setAllSpyMethodForwarding(to: shouldForward)
-        ObjectiveCRootSpyable.setAllSpyMethodForwarding(to: shouldForward)
+        SwiftRootSpyable.DirectClassSpyController.forwardingBehavior = .custom(shouldForward)
+        SwiftRootSpyable.DirectObjectSpyController.forwardingBehavior = .custom(shouldForward)
+        SwiftRootSpyable.IndirectClassSpyController.forwardingBehavior = .custom(shouldForward)
+        SwiftRootSpyable.IndirectObjectSpyController.forwardingBehavior = .custom(shouldForward)
+
+        ObjectiveCRootSpyable.DirectClassSpyController.forwardingBehavior = .custom(shouldForward)
+        ObjectiveCRootSpyable.DirectObjectSpyController.forwardingBehavior = .custom(shouldForward)
+        ObjectiveCRootSpyable.IndirectClassSpyController.forwardingBehavior = .custom(shouldForward)
+        ObjectiveCRootSpyable.IndirectObjectSpyController.forwardingBehavior = .custom(shouldForward)
     }
 
     func setSpySuperclassMethodCalling(to shouldCall: Bool) {
