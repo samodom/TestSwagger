@@ -17,32 +17,36 @@ extension SwiftRootSpyable: SampleSpyableObject, SampleSpyableClass {}
 
 public extension SwiftRootSpyable {
 
-    public enum DirectClassSpyController: SpyController {
+    public enum DirectClassSpyController: CustomForwardableSpyController {
         public static let rootSpyableClass: AnyClass = SwiftRootSpyable.self
         public static let vector = SpyVector.direct
         public static let coselectors = SampleSpyCoselectors.directClassSpy
         public static let evidence: Set<SpyEvidenceReference> = SampleReferences
+        public static var forwardingBehavior = MethodForwardingBehavior.never
     }
 
-    public enum DirectObjectSpyController: SpyController {
+    public enum DirectObjectSpyController: CustomForwardableSpyController {
         public static let rootSpyableClass: AnyClass = SwiftRootSpyable.self
         public static let vector = SpyVector.direct
         public static let coselectors = SampleSpyCoselectors.directObjectSpy
         public static let evidence: Set<SpyEvidenceReference> = SampleReferences
+        public static var forwardingBehavior = MethodForwardingBehavior.never
     }
 
-    public enum IndirectClassSpyController: SpyController {
+    public enum IndirectClassSpyController: CustomForwardableSpyController {
         public static let rootSpyableClass: AnyClass = SwiftRootSpyable.self
         public static let vector = SpyVector.indirect
         public static let coselectors = SampleSpyCoselectors.indirectClassSpy
         public static let evidence: Set<SpyEvidenceReference> = SampleReferences
+        public static var forwardingBehavior = MethodForwardingBehavior.never
     }
 
-    public enum IndirectObjectSpyController: SpyController {
+    public enum IndirectObjectSpyController: CustomForwardableSpyController {
         public static let rootSpyableClass: AnyClass = SwiftRootSpyable.self
         public static let vector = SpyVector.indirect
         public static let coselectors = SampleSpyCoselectors.indirectObjectSpy
         public static let evidence: Set<SpyEvidenceReference> = SampleReferences
+        public static var forwardingBehavior = MethodForwardingBehavior.never
     }
     
 }
@@ -102,7 +106,7 @@ extension SwiftRootSpyable {
         sampleClassMethodCalledAssociated = true
         sampleClassMethodCalledSerialized = true
 
-        return forwardsSpyMethodCalls(for: SampleMethodSelectors.originalClassMethod) ?
+        return DirectClassSpyController.forwardingBehavior.forwards ?
             directSpy_sampleClassMethod(input) : WellKnownMethodReturnValues.commonSpyValue.rawValue
     }
 
@@ -110,7 +114,7 @@ extension SwiftRootSpyable {
         sampleInstanceMethodCalledAssociated = true
         sampleInstanceMethodCalledSerialized = true
 
-        return SwiftRootSpyable.forwardsSpyMethodCalls(for: SampleMethodSelectors.originalInstanceMethod) ?
+        return DirectObjectSpyController.forwardingBehavior.forwards ?
             directSpy_sampleInstanceMethod(input) : WellKnownMethodReturnValues.commonSpyValue.rawValue
     }
 
@@ -118,7 +122,7 @@ extension SwiftRootSpyable {
         sampleClassMethodCalledAssociated = true
         sampleClassMethodCalledSerialized = true
 
-        return forwardsSpyMethodCalls(for: SampleMethodSelectors.originalClassMethod) ?
+        return IndirectClassSpyController.forwardingBehavior.forwards ?
             indirectSpy_sampleClassMethod(input) : WellKnownMethodReturnValues.commonSpyValue.rawValue
     }
 
@@ -126,34 +130,8 @@ extension SwiftRootSpyable {
         sampleInstanceMethodCalledAssociated = true
         sampleInstanceMethodCalledSerialized = true
 
-        return SwiftRootSpyable.forwardsSpyMethodCalls(for: SampleMethodSelectors.originalInstanceMethod) ?
+        return IndirectObjectSpyController.forwardingBehavior.forwards ?
             indirectSpy_sampleInstanceMethod(input) : WellKnownMethodReturnValues.commonSpyValue.rawValue
     }
 
-}
-
-
-// MARK: Spy method forwarding
-
-extension SwiftRootSpyable {
-
-    static var SwiftRootSpyableSelectorForwarding = [
-        SampleMethodSelectors.originalClassMethod: true,
-        SampleMethodSelectors.originalInstanceMethod: true
-    ]
-
-    class func forwardsSpyMethodCalls(for selector: Selector) -> Bool {
-        return SwiftRootSpyableSelectorForwarding[selector] ?? false
-    }
-
-    class func setSpyMethodForwarding(for selector: Selector, forwards: Bool) {
-        SwiftRootSpyableSelectorForwarding[selector] = forwards
-    }
-
-    class func setAllSpyMethodForwarding(to forwards: Bool) {
-        SwiftRootSpyableSelectorForwarding.keys.forEach { key in
-            SwiftRootSpyableSelectorForwarding[key] = forwards
-        }
-    }
-    
 }

@@ -30,6 +30,7 @@ extension XCTestCase: SpyableObject {
             RecordFailureEvidenceReferences.line,
             RecordFailureEvidenceReferences.expected
         ]
+        public static let forwardingBehavior = MethodForwardingBehavior.never
     }
 
     fileprivate enum RecordFailureEvidenceReferences {

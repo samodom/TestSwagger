@@ -222,3 +222,5 @@ public enum MethodForwardingBehavior {
     public var forwards: Bool  /// read-only
 }
 ```
+
+In order to allow user-defined method-forwarding behavior, the `CustomForwardableSpyController` protocol extends `SpyController` with a mutable behavior property.

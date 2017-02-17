@@ -17,32 +17,36 @@ extension ObjectiveCRootSpyable: SampleSpyableObject, SampleSpyableClass {}
 
 public extension ObjectiveCRootSpyable {
 
-    public enum DirectClassSpyController: SpyController {
+    public enum DirectClassSpyController: CustomForwardableSpyController {
         public static let rootSpyableClass: AnyClass = ObjectiveCRootSpyable.self
         public static let vector = SpyVector.direct
         public static let coselectors = SampleSpyCoselectors.directClassSpy
         public static let evidence: Set<SpyEvidenceReference> = SampleReferences
+        public static var forwardingBehavior = MethodForwardingBehavior.never
     }
 
-    public enum DirectObjectSpyController: SpyController {
+    public enum DirectObjectSpyController: CustomForwardableSpyController {
         public static let rootSpyableClass: AnyClass = ObjectiveCRootSpyable.self
         public static let vector = SpyVector.direct
         public static let coselectors = SampleSpyCoselectors.directObjectSpy
         public static let evidence: Set<SpyEvidenceReference> = SampleReferences
+        public static var forwardingBehavior = MethodForwardingBehavior.never
     }
 
-    public enum IndirectClassSpyController: SpyController {
+    public enum IndirectClassSpyController: CustomForwardableSpyController {
         public static let rootSpyableClass: AnyClass = ObjectiveCRootSpyable.self
         public static let vector = SpyVector.indirect
         public static let coselectors = SampleSpyCoselectors.indirectClassSpy
         public static let evidence: Set<SpyEvidenceReference> = SampleReferences
+        public static var forwardingBehavior = MethodForwardingBehavior.never
     }
 
-    public enum IndirectObjectSpyController: SpyController {
+    public enum IndirectObjectSpyController: CustomForwardableSpyController {
         public static let rootSpyableClass: AnyClass = ObjectiveCRootSpyable.self
         public static let vector = SpyVector.indirect
         public static let coselectors = SampleSpyCoselectors.indirectObjectSpy
         public static let evidence: Set<SpyEvidenceReference> = SampleReferences
+        public static var forwardingBehavior = MethodForwardingBehavior.never
     }
 
 }
@@ -101,7 +105,7 @@ extension ObjectiveCRootSpyable {
         sampleClassMethodCalledAssociated = true
         sampleClassMethodCalledSerialized = true
 
-        return forwardsSpyMethodCalls(for: SampleMethodSelectors.originalClassMethod) ?
+        return DirectClassSpyController.forwardingBehavior.forwards ?
             directSpy_sampleClassMethod(input) : WellKnownMethodReturnValues.commonSpyValue.rawValue
     }
 
@@ -109,7 +113,7 @@ extension ObjectiveCRootSpyable {
         sampleInstanceMethodCalledAssociated = true
         sampleInstanceMethodCalledSerialized = true
 
-        return ObjectiveCRootSpyable.forwardsSpyMethodCalls(for: SampleMethodSelectors.originalInstanceMethod) ?
+        return DirectObjectSpyController.forwardingBehavior.forwards ?
             directSpy_sampleInstanceMethod(input) : WellKnownMethodReturnValues.commonSpyValue.rawValue
     }
 
@@ -117,7 +121,7 @@ extension ObjectiveCRootSpyable {
         sampleClassMethodCalledAssociated = true
         sampleClassMethodCalledSerialized = true
 
-        return forwardsSpyMethodCalls(for: SampleMethodSelectors.originalClassMethod) ?
+        return IndirectClassSpyController.forwardingBehavior.forwards ?
             indirectSpy_sampleClassMethod(input) : WellKnownMethodReturnValues.commonSpyValue.rawValue
     }
 
@@ -125,34 +129,8 @@ extension ObjectiveCRootSpyable {
         sampleInstanceMethodCalledAssociated = true
         sampleInstanceMethodCalledSerialized = true
 
-        return ObjectiveCRootSpyable.forwardsSpyMethodCalls(for: SampleMethodSelectors.originalInstanceMethod) ?
+        return IndirectObjectSpyController.forwardingBehavior.forwards ?
             indirectSpy_sampleInstanceMethod(input) : WellKnownMethodReturnValues.commonSpyValue.rawValue
     }
 
-}
-
-
-// MARK: Spy method forwarding
-
-extension ObjectiveCRootSpyable {
-
-    fileprivate static var ObjectiveCRootSpyableSelectorForwarding = [
-        SampleMethodSelectors.originalClassMethod: false,
-        SampleMethodSelectors.originalInstanceMethod: false
-    ]
-
-    class func forwardsSpyMethodCalls(for selector: Selector) -> Bool {
-        return ObjectiveCRootSpyableSelectorForwarding[selector] ?? false
-    }
-
-    class func setSpyMethodForwarding(for selector: Selector, forwards: Bool) {
-        ObjectiveCRootSpyableSelectorForwarding[selector] = forwards
-    }
-
-    class func setAllSpyMethodForwarding(to forwards: Bool) {
-        ObjectiveCRootSpyableSelectorForwarding.keys.forEach { key in
-            ObjectiveCRootSpyableSelectorForwarding[key] = forwards
-        }
-    }
-    
 }
