@@ -65,7 +65,7 @@ Spies operate by replacing the implementation of testable methods with *spy meth
 
 ### Evidence
 
-Evidence of calls being made to methods can be captured by using *object association* on the subject or by *serializing objects* to the file system.  That evidence can then made available through properties on the subject.
+Evidence of calls being made to methods can be captured by using *object association* on the subject or by *serializing objects* to the file system.  That evidence can then be made available through new properties on the subject.
 
 > Example:
 >
@@ -147,6 +147,7 @@ A spy controller is a static group of values that provide information used in th
 * the **root spyable class** (defined above)
 * the **spy vector** (for specifying either direct- or indirect-invocation spying)
 * the pair of **selectors** identifying both the spyable and spy methods along with their method type (class or instance), captured in a simple structure type called `SpyCoselectors`
+* the complete set of references to spy evidence expected to be collected on any call to the original method: see [Evidence References](#common-evidence-reference)
 
 
 ### Spy constructors
@@ -157,10 +158,10 @@ A spy subject must meet different requirements depending upon the type of spy:
 
 | Vector/Method type | Requirement |
 |:------------------:|:------------|
-| Direct/instance | The subject is an **object instance**  of the root spyable class or one of its subclasses.  |
-| Direct/class | The subject is an **class**  that is either the root spyable class or one of its subclasses. |
-| Indirect/instance | The subject is an **object instance of a subclass** of the root spyable class. |
-| Indirect/class | The subject is a **subclass** of the root spyable class. |
+| **direct** / **instance** | The subject is an **object instance**  of the root spyable class or one of its subclasses.  |
+| **direct** / **class** | The subject is an **class**  that is either the root spyable class or one of its subclasses. |
+| **indirect** / **instance** | The subject is an **object instance of a subclass** of the root spyable class. |
+| **indirect** / **class** | The subject is a **subclass** of the root spyable class. |
 
 
 ### Construction

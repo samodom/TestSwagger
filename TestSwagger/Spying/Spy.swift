@@ -29,7 +29,7 @@ public struct SpyCoselectors {
     let spy: Selector
 
     /// Creates a new spy co-selector.
-    /// - parameter ofType: The method type of the methods implemented by the selectors.
+    /// - parameter methodType: The method type of the methods implemented by the selectors.
     /// - parameter original: The selector of the original method defined by the root
     ///                       spyable class that is spied upon.
     /// - parameter spy: The selector of the spy method defined for the purposes of spying
@@ -49,13 +49,14 @@ public struct SpyCoselectors {
 /// to a particular class or instance metnod.
 public final class Spy {
 
-    fileprivate let subject: Any
+    let subject: Any
     fileprivate let surrogate: MethodSurrogate
-    fileprivate let evidence: Set<SpyEvidenceReference>
+    let evidence: Set<SpyEvidenceReference>
 
     init(subject: Any,
          surrogate: MethodSurrogate,
-         evidence: Set<SpyEvidenceReference>) {
+         evidence: Set<SpyEvidenceReference>
+        ) {
 
         self.subject = subject
         self.surrogate = surrogate
@@ -68,10 +69,10 @@ public final class Spy {
 public extension Spy {
 
     /// Used to spy on a test subject's method within a context.
-    /// - parameter on: Context during which the spy will be active.
+    /// - parameter context: Context during which the spy will be active.
     public func spy(on context: SpyExecutionContext) {
         surrogate.withAlternateImplementation(context: context)
-        //        cleanUpEvidence()
+        cleanUpEvidence()
     }
 
 
@@ -85,9 +86,31 @@ public extension Spy {
     /// Used to deactivate spying on a test subject's method.
     public func endSpying() {
         surrogate.useOriginalImplementation()
-        //        cleanUpEvidence()
+        cleanUpEvidence()
     }
 
-    //    public func cleanUpEvidence() {}
+}
+
+
+fileprivate extension Spy {
+
+    func cleanUpEvidence() {
+        if let spyableObject = subjectAsSpyableObject {
+            evidence.forEach(spyableObject.removeEvidence(with:))
+        }
+        else if let spyableClass = subjectAsSpyableClass {
+            evidence.forEach(spyableClass.removeEvidence(with:))
+        }
+            // TODO: REMOVE!!!
+        else { fatalError() }
+    }
+
+    var subjectAsSpyableObject: SpyableObject? {
+        return subject as? SpyableObject
+    }
+
+    var subjectAsSpyableClass: SpyableClass.Type? {
+        return subject as? SpyableClass.Type
+    }
 
 }

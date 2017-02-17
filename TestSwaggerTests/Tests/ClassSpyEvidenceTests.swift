@@ -25,6 +25,7 @@ class ClassSpyEvidenceTests: SpyEvidenceTestCase {
         super.tearDown()
     }
 
+
     func testSavingAssociatedEvidence() {
         spyableClasses.forEach { `class` in
             `class`.saveEvidence(sampleEvidence, with: associationReference)

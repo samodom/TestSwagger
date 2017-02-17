@@ -19,7 +19,7 @@ public extension SpyableObject {
 
     /// Saves spy evidence.
     /// - parameter evidence: Evidence to save.
-    /// - parameter with: Evidence reference used to save evidence.
+    /// - parameter reference: Evidence reference used to save evidence.
     public func saveEvidence(_ evidence: Any, with reference: SpyEvidenceReference) {
         switch reference {
         case .association(key: let key):
@@ -32,8 +32,8 @@ public extension SpyableObject {
 
 
     /// Retrieves saved spy evidence.
-    /// - parameter with: Evidence reference pointing to saved evidence.
-    /// - returns: Data evidence stored in file with provided path, if it exists.
+    /// - parameter reference: Evidence reference pointing to saved evidence.
+    /// - returns: Evidence saved with the provided reference, if it exists.
     public func loadEvidence(with reference: SpyEvidenceReference) -> Any? {
         switch reference {
         case .association(key: let key):
@@ -46,7 +46,7 @@ public extension SpyableObject {
 
 
     /// Removes spy evidence.
-    /// - parameter with: Evidence referencing pointing to spy evidence.
+    /// - parameter reference: Evidence referencing pointing to spy evidence.
     public func removeEvidence(with reference: SpyEvidenceReference) {
         switch reference {
         case .association(key: let key):
@@ -64,7 +64,7 @@ public extension SpyableClass {
 
     /// Saves spy evidence.
     /// - parameter evidence: Evidence to save.
-    /// - parameter with: Evidence reference used to save evidence.
+    /// - parameter reference: Evidence reference used to save evidence.
     public static func saveEvidence(_ evidence: Any, with reference: SpyEvidenceReference) {
         switch reference {
         case .association(key: let key):
@@ -77,8 +77,8 @@ public extension SpyableClass {
 
 
     /// Retrieves saved spy evidence.
-    /// - parameter with: Evidence reference pointing to saved evidence.
-    /// - returns: Data evidence stored in file with provided path, if it exists.
+    /// - parameter reference: Evidence reference pointing to saved evidence.
+    /// - returns: Evidence saved with the provided reference, if it exists.
     public static func loadEvidence(with reference: SpyEvidenceReference) -> Any? {
         switch reference {
         case .association(key: let key):
@@ -91,7 +91,7 @@ public extension SpyableClass {
 
 
     /// Removes spy evidence.
-    /// - parameter with: Evidence referencing pointing to spy evidence.
+    /// - parameter reference: Evidence referencing pointing to spy evidence.
     public static func removeEvidence(with reference: SpyEvidenceReference) {
         switch reference {
         case .association(key: let key):
