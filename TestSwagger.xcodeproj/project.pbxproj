@@ -32,6 +32,11 @@
 		0A39009C1E52AD81009190C8 /* ObjectSpyEvidenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A39009B1E52AD81009190C8 /* ObjectSpyEvidenceTests.swift */; };
 		0A39009E1E52AEB4009190C8 /* SpyEvidenceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A39009D1E52AEB4009190C8 /* SpyEvidenceTestCase.swift */; };
 		0A3900A01E5398A5009190C8 /* ClassSpyEvidenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A39009F1E5398A5009190C8 /* ClassSpyEvidenceTests.swift */; };
+		0AC9F90F1E54C97C006CCC4B /* CodeSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC9F90E1E54C97C006CCC4B /* CodeSourceTests.swift */; };
+		0AC9F9121E54CE45006CCC4B /* CodeSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC9F9111E54CE45006CCC4B /* CodeSource.swift */; };
+		0AC9F9141E54D23D006CCC4B /* XCTestCaseSpies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC9F9131E54D23D006CCC4B /* XCTestCaseSpies.swift */; };
+		0AC9F9181E54DBA8006CCC4B /* TestFailureRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC9F9171E54DBA8006CCC4B /* TestFailureRecording.swift */; };
+		0AC9F91A1E54DBCA006CCC4B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC9F9191E54DBCA006CCC4B /* XCTest.framework */; };
 		0AF059841E4409B4000BE6C5 /* SpyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF059831E4409B4000BE6C5 /* SpyController.swift */; };
 		0AF059861E44179C000BE6C5 /* SpyEvidenceReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF059851E44179C000BE6C5 /* SpyEvidenceReference.swift */; };
 		0AFFECF41DFE256100D4409C /* TestSwagger.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AFFECE61DFE256100D4409C /* TestSwagger.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -90,6 +95,11 @@
 		0A39009B1E52AD81009190C8 /* ObjectSpyEvidenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectSpyEvidenceTests.swift; sourceTree = "<group>"; };
 		0A39009D1E52AEB4009190C8 /* SpyEvidenceTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyEvidenceTestCase.swift; sourceTree = "<group>"; };
 		0A39009F1E5398A5009190C8 /* ClassSpyEvidenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassSpyEvidenceTests.swift; sourceTree = "<group>"; };
+		0AC9F90E1E54C97C006CCC4B /* CodeSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeSourceTests.swift; sourceTree = "<group>"; };
+		0AC9F9111E54CE45006CCC4B /* CodeSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeSource.swift; sourceTree = "<group>"; };
+		0AC9F9131E54D23D006CCC4B /* XCTestCaseSpies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestCaseSpies.swift; sourceTree = "<group>"; };
+		0AC9F9171E54DBA8006CCC4B /* TestFailureRecording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestFailureRecording.swift; sourceTree = "<group>"; };
+		0AC9F9191E54DBCA006CCC4B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0AF059831E4409B4000BE6C5 /* SpyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyController.swift; sourceTree = "<group>"; };
 		0AF059851E44179C000BE6C5 /* SpyEvidenceReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyEvidenceReference.swift; sourceTree = "<group>"; };
 		0AF059871E45103B000BE6C5 /* SpyEvidenceReferenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyEvidenceReferenceTests.swift; sourceTree = "<group>"; };
@@ -136,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AC9F91A1E54DBCA006CCC4B /* XCTest.framework in Frameworks */,
 				56FC507778C782DBDBFB2333 /* Pods_TestSwaggerWorkspace_TestSwagger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -198,6 +209,7 @@
 				0A2236031E4048010031BA61 /* DirectObjectSpyControllerTests.swift */,
 				0A2236041E4048010031BA61 /* IndirectClassSpyControllerTests.swift */,
 				0A2236051E4048010031BA61 /* IndirectObjectSpyControllerTests.swift */,
+				0AC9F90E1E54C97C006CCC4B /* CodeSourceTests.swift */,
 				0A39009B1E52AD81009190C8 /* ObjectSpyEvidenceTests.swift */,
 				0A22361F1E404F120031BA61 /* SpyControllerTestCase.swift */,
 				0AF059871E45103B000BE6C5 /* SpyEvidenceReferenceTests.swift */,
@@ -210,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				0A22362E1E4051910031BA61 /* Spying */,
+				0AC9F9131E54D23D006CCC4B /* XCTestCaseSpies.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -246,6 +259,16 @@
 			path = Spies;
 			sourceTree = "<group>";
 		};
+		0AC9F9101E54CDF0006CCC4B /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				0AC9F9111E54CE45006CCC4B /* CodeSource.swift */,
+				0AC9F9171E54DBA8006CCC4B /* TestFailureRecording.swift */,
+			);
+			name = Tools;
+			path = SampleTypes/Tools;
+			sourceTree = SOURCE_ROOT;
+		};
 		0AFFECD91DFE256100D4409C = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +299,7 @@
 				0AFFECE71DFE256100D4409C /* Info.plist */,
 				0A2236251E4050D00031BA61 /* Spying */,
 				0AFFECE61DFE256100D4409C /* TestSwagger.h */,
+				0AC9F9101E54CDF0006CCC4B /* Tools */,
 			);
 			path = TestSwagger;
 			sourceTree = "<group>";
@@ -293,6 +317,7 @@
 		1B8EAF7D5626D52BECCC34C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0AC9F9191E54DBCA006CCC4B /* XCTest.framework */,
 				90CA66031BD775022E8ECCA3 /* Pods_TestSwagger.framework */,
 				FF247D166F409E2EE39E2878 /* Pods_TestSwaggerTests.framework */,
 				56D04DC772E28BFDB567A057 /* Pods_TestSwaggerWorkspace_SampleTypesTests.framework */,
@@ -653,7 +678,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AC9F9181E54DBA8006CCC4B /* TestFailureRecording.swift in Sources */,
 				0A22362D1E4050D00031BA61 /* Spyable.swift in Sources */,
+				0AC9F9121E54CE45006CCC4B /* CodeSource.swift in Sources */,
 				0A22362A1E4050D00031BA61 /* Evidence.swift in Sources */,
 				0AF059861E44179C000BE6C5 /* SpyEvidenceReference.swift in Sources */,
 				0A22362C1E4050D00031BA61 /* Spy.swift in Sources */,
@@ -665,12 +692,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AC9F90F1E54C97C006CCC4B /* CodeSourceTests.swift in Sources */,
 				0A2236391E4051910031BA61 /* SpyTestOutputExpectations.swift in Sources */,
 				0A2236201E404F120031BA61 /* SpyControllerTestCase.swift in Sources */,
 				0A2236151E4048010031BA61 /* IndirectObjectSpyControllerTests.swift in Sources */,
 				0A01761F1E51416C001CFE72 /* SpyEvidenceReferenceTests.swift in Sources */,
 				0A2236121E4048010031BA61 /* DirectClassSpyControllerTests.swift in Sources */,
 				0A2236131E4048010031BA61 /* DirectObjectSpyControllerTests.swift in Sources */,
+				0AC9F9141E54D23D006CCC4B /* XCTestCaseSpies.swift in Sources */,
 				0A2236381E4051910031BA61 /* SpyTestCaseIndirectInvocationExpectations.swift in Sources */,
 				0A2236141E4048010031BA61 /* IndirectClassSpyControllerTests.swift in Sources */,
 				0A39009C1E52AD81009190C8 /* ObjectSpyEvidenceTests.swift in Sources */,
@@ -879,6 +908,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FoundationSwagger\"",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
 				INFOPLIST_FILE = TestSwagger/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -901,6 +935,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FoundationSwagger\"",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
 				INFOPLIST_FILE = TestSwagger/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
