@@ -60,6 +60,7 @@ BOOL ObjectiveCOverriderCallsSuperclass = NO;
 
 @end
 
+
 @implementation ObjectiveCOverriderOfOverrider
 
 BOOL ObjectiveCOverriderOfOverriderCallsSuperclass = NO;
@@ -110,6 +111,7 @@ BOOL ObjectiveCOverriderOfInheritorCallsSuperclass = NO;
 }
 
 @end
+
 
 @implementation ObjectiveCInheritorOfOverrider
 @end

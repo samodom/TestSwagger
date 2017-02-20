@@ -11,18 +11,18 @@ import FoundationSwagger
 import TestSwagger
 
 
-/// Controller
-
-extension XCTestCase: SpyableObject {
+extension XCTestCase: ObjectSpyable { // MARK: Controller
 
     enum RecordFailureSpyController: SpyController {
         public static let rootSpyableClass: AnyClass = XCTestCase.self
         public static let vector = SpyVector.direct
-        public static let coselectors = SpyCoselectors(
-            methodType: .instance,
-            original: recordFailureOriginalSelector,
-            spy: #selector(XCTestCase.spy_recordFailure(withDescription:inFile:atLine:expected:))
-        )
+        public static let coselectors: Set<SpyCoselectors> = [
+            SpyCoselectors(
+                methodType: .instance,
+                original: recordFailureOriginalSelector,
+                spy: #selector(XCTestCase.spy_recordFailure(withDescription:inFile:atLine:expected:))
+            )
+        ]
         public static let evidence: Set<SpyEvidenceReference> = [
             RecordFailureEvidenceReferences.called,
             RecordFailureEvidenceReferences.description,
@@ -75,9 +75,7 @@ extension XCTestCase: SpyableObject {
 }
 
 
-/// Evidence
-
-extension XCTestCase {
+extension XCTestCase { // MARK: Evidence
 
     fileprivate(set) var recordFailureWasCalled: Bool {
         get {
