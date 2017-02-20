@@ -26,16 +26,16 @@ public enum SpyVector {
 public final class Spy {
 
     let subject: Any
-    fileprivate let surrogate: MethodSurrogate
+    fileprivate let surrogates: [MethodSurrogate]
     let evidence: Set<SpyEvidenceReference>
 
     init(subject: Any,
-         surrogate: MethodSurrogate,
+         surrogates: [MethodSurrogate],
          evidence: Set<SpyEvidenceReference>
         ) {
 
         self.subject = subject
-        self.surrogate = surrogate
+        self.surrogates = surrogates
         self.evidence = evidence
     }
 
@@ -47,7 +47,9 @@ public extension Spy {
     /// Used to spy on a test subject's method within a context.
     /// - parameter context: Context during which the spy will be active.
     public func spy(on context: SpyExecutionContext) {
-        surrogate.withAlternateImplementation(context: context)
+        beginSpying()
+        context()
+        endSpying()
         cleanUpEvidence()
     }
 
@@ -55,13 +57,13 @@ public extension Spy {
     /// Used to activate spying on a test subject's method.
     /// - note: Calls to this method should be balanced by a call to `endSpying`.
     public func beginSpying() {
-        surrogate.useAlternateImplementation()
+        surrogates.forEach { $0.useAlternateImplementation() }
     }
 
 
     /// Used to deactivate spying on a test subject's method.
     public func endSpying() {
-        surrogate.useOriginalImplementation()
+        surrogates.forEach { $0.useOriginalImplementation() }
         cleanUpEvidence()
     }
 
@@ -77,8 +79,6 @@ fileprivate extension Spy {
         else if let spyableClass = subjectAsClassSpyable {
             evidence.forEach(spyableClass.removeEvidence(with:))
         }
-            // TODO: REMOVE!!!
-        else { fatalError() }
     }
 
     var subjectAsObjectSpyable: ObjectSpyable? {

@@ -20,8 +20,8 @@ public protocol SpyController {
     static var vector: SpyVector { get }
 
 
-    /// The selectors for the original and spy methods along with the type of the methods.
-    static var coselectors: SpyCoselectors { get }
+    /// All selector pairs of original and spy methods along with their method types.
+    static var coselectors: Set<SpyCoselectors> { get }
 
 
     /// A set of evidence reference items used in cleaning up evidence after spying.
@@ -54,14 +54,16 @@ public extension SpyController {
             return nil
         }
 
-        let surrogate = MethodSurrogate(
-            forClass: owningClass,
-            ofType: coselectors.methodType,
-            originalSelector: coselectors.original,
-            alternateSelector: coselectors.spy
-        )
+        let surrogates = coselectors.map { coselector in
+            MethodSurrogate(
+                forClass: owningClass,
+                ofType: coselector.methodType,
+                originalSelector: coselector.original,
+                alternateSelector: coselector.spy
+            )
+        }
 
-        return Spy(subject: subject, surrogate: surrogate, evidence: evidence)
+        return Spy(subject: subject, surrogates: surrogates, evidence: evidence)
     }
 
 }

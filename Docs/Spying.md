@@ -143,7 +143,7 @@ A spy controller is a static group of values that provide information used in th
 
 * the **root spyable class** (defined above)
 * the **spy vector** (for specifying either direct- or indirect-invocation spying)
-* the pair of **selectors** identifying both the spyable and spy methods along with their method type (class or instance), captured in a simple structure type called `SpyCoselectors`
+* the set of pairs of **selectors** identifying both the spyable and spy methods along with their method type (class or instance), each captured in a structure called `SpyCoselectors`
 * the complete set of references to spy evidence expected to be collected on any call to the original method: see [Evidence References](#common-evidence-reference)
 * the forwarding behavior to be used when calls are captured by the spy method: see [Method Forwarding Behavior](#method-forwarding-behavior)
 
