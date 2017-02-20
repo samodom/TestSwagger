@@ -33,12 +33,12 @@ class SpyControllerTestCase: XCTestCase {
         return currentExpectation.subject
     }
 
-    var subjectAsSpyableObject: SampleSpyableObject? {
-        return subject as? SampleSpyableObject
+    var subjectAsObjectSpyable: SampleObjectSpyable? {
+        return subject as? SampleObjectSpyable
     }
 
-    var subjectAsSpyableClass: SampleSpyableClass.Type? {
-        return subject as? SampleSpyableClass.Type
+    var subjectAsClassSpyable: SampleClassSpyable.Type? {
+        return subject as? SampleClassSpyable.Type
     }
 
     var spy: Spy {
@@ -148,15 +148,15 @@ fileprivate extension SpyControllerTestCase {
 
     func createDecoyEvidence() {
         decoyEvidence.forEach { reference in
-            subjectAsSpyableObject?.saveEvidence(true, with: reference)
-            subjectAsSpyableClass?.saveEvidence(true, with: reference)
+            subjectAsObjectSpyable?.saveEvidence(true, with: reference)
+            subjectAsClassSpyable?.saveEvidence(true, with: reference)
         }
     }
 
     func deleteAllEvidence() {
         decoyEvidence.union(evidence).forEach { reference in
-            subjectAsSpyableObject?.removeEvidence(with: reference)
-            subjectAsSpyableClass?.removeEvidence(with: reference)
+            subjectAsObjectSpyable?.removeEvidence(with: reference)
+            subjectAsClassSpyable?.removeEvidence(with: reference)
         }
     }
 
@@ -227,13 +227,13 @@ fileprivate extension SpyControllerTestCase {
             SpyControllerTests.flagNotClearedErrorMessage
         let errorMessage = errorMessageHeader.appending(currentVariant.description)
 
-        if let spyableObject = subjectAsSpyableObject {
+        if let spyableObject = subjectAsObjectSpyable {
             if spyableObject.sampleInstanceMethodCalledAssociated != expectedFlag ||
                 spyableObject.sampleInstanceMethodCalledSerialized != expectedFlag {
                 recordFailure(withDescription: errorMessage, at: currentCodeSource)
             }
         }
-        else if let spyableClass = subjectAsSpyableClass {
+        else if let spyableClass = subjectAsClassSpyable {
             if spyableClass.sampleClassMethodCalledAssociated != expectedFlag ||
                 spyableClass.sampleClassMethodCalledSerialized != expectedFlag {
 
@@ -246,10 +246,10 @@ fileprivate extension SpyControllerTestCase {
     }
 
     private func evidenceWasRemoved(with reference: SpyEvidenceReference) -> Bool {
-        if let spyableObject = subjectAsSpyableObject {
+        if let spyableObject = subjectAsObjectSpyable {
             return spyableObject.loadEvidence(with: reference) == nil
         }
-        else if let spyableClass = subjectAsSpyableClass {
+        else if let spyableClass = subjectAsClassSpyable {
             return spyableClass.loadEvidence(with: reference) == nil
         }
         else {

@@ -22,9 +22,9 @@ let SampleReferences: Set = [
 ]
 
 
-protocol SampleSpyableObject: SpyableObject {}
+protocol SampleObjectSpyable: ObjectSpyable {}
 
-extension SampleSpyableObject {
+extension SampleObjectSpyable {
 
     var sampleInstanceMethodCalledAssociated: Bool {
         get {
@@ -55,9 +55,9 @@ extension SampleSpyableObject {
 }
 
 
-protocol SampleSpyableClass: SpyableClass {}
+protocol SampleClassSpyable: ClassSpyable {}
 
-extension SampleSpyableClass {
+extension SampleClassSpyable {
 
     static var sampleClassMethodCalledAssociated: Bool {
         get {

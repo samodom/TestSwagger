@@ -15,7 +15,7 @@ public func UUIDKeyString() -> [CChar] {
 }
 
 
-public extension SpyableObject {
+public extension ObjectSpyable {
 
     /// Saves spy evidence.
     /// - parameter evidence: Evidence to save.
@@ -60,7 +60,7 @@ public extension SpyableObject {
 }
 
 
-public extension SpyableClass {
+public extension ClassSpyable {
 
     /// Saves spy evidence.
     /// - parameter evidence: Evidence to save.

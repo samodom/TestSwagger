@@ -52,7 +52,7 @@ Indirect-invocation spying is used to ensure that a subclass overriding an inher
 
 ### Subjects
 
-Spies have *subjects* (or targets) upon which they spy for method swizzling and evidence cleanup.  Depending on whether the spied methods are instance or class methods, spies are created with object instances or with classes.  Some common subject functionality is available by implementing the `SpyableObject` and `SpyableClass` protocols.
+Spies have *subjects* (or targets) upon which they spy for method swizzling and evidence cleanup.  Depending on whether the spied methods are instance or class methods, spies are created with object instances or with classes.  Some common subject functionality is available by implementing the `ObjectSpyable` and `ClassSpyable` protocols.
 
 
 ### Spy methods
@@ -100,11 +100,11 @@ enum EvidenceReference {
 
 #### Evidence methods
 
-Several convenience methods are included in the `SpyableObject` and `SpyableClass` protocol implementations for simplifying the persistence, retrieval and clearing of evidence.  Any filesystem errors encountered are ignored so that these methods fail silently.
+Several convenience methods are included in the `ObjectSpyable` and `ClassSpyable` protocol implementations for simplifying the persistence, retrieval and clearing of evidence.  Any filesystem errors encountered are ignored so that these methods fail silently.
 
 
 ```swift
-extension SpyableObject {
+extension ObjectSpyable {
 	func saveEvidence(_: Any, with: EvidenceReference)
 	func loadEvidence(with: EvidenceReference) -> Any?
 	func removeEvidence(with: EvidenceReference)
@@ -112,7 +112,7 @@ extension SpyableObject {
 ```
 
 ```swift
-extension SpyableClass {
+extension ClassSpyable {
 	static func saveEvidence(_: Any, with: EvidenceReference)
 	static func loadEvidence(with: EvidenceReference) -> Any?
 	static func removeEvidence(with: EvidenceReference)

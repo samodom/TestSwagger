@@ -10,7 +10,7 @@ import TestSwagger
 import SampleTypes
 import FoundationSwagger
 
-extension SwiftRootSpyable: SampleSpyableObject, SampleSpyableClass {}
+extension SwiftRootSpyable: SampleObjectSpyable, SampleClassSpyable {}
 
 
 // MARK: Spy controllers
@@ -52,10 +52,7 @@ public extension SwiftRootSpyable {
 }
 
 
-
-// MARK: Selectors
-
-fileprivate extension SwiftRootSpyable {
+fileprivate extension SwiftRootSpyable { // MARK: Selectors
 
     enum SampleMethodSelectors {
         static let originalClassMethod = #selector(SwiftRootSpyable.sampleClassMethod(_:))
@@ -98,9 +95,7 @@ fileprivate extension SwiftRootSpyable {
 }
 
 
-// MARK: Spy methods
-
-extension SwiftRootSpyable {
+extension SwiftRootSpyable { // MARK: Spy methods
 
     dynamic class func directSpy_sampleClassMethod(_ input: String) -> Int {
         sampleClassMethodCalledAssociated = true

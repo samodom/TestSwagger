@@ -71,22 +71,22 @@ public extension Spy {
 fileprivate extension Spy {
 
     func cleanUpEvidence() {
-        if let spyableObject = subjectAsSpyableObject {
+        if let spyableObject = subjectAsObjectSpyable {
             evidence.forEach(spyableObject.removeEvidence(with:))
         }
-        else if let spyableClass = subjectAsSpyableClass {
+        else if let spyableClass = subjectAsClassSpyable {
             evidence.forEach(spyableClass.removeEvidence(with:))
         }
             // TODO: REMOVE!!!
         else { fatalError() }
     }
 
-    var subjectAsSpyableObject: SpyableObject? {
-        return subject as? SpyableObject
+    var subjectAsObjectSpyable: ObjectSpyable? {
+        return subject as? ObjectSpyable
     }
 
-    var subjectAsSpyableClass: SpyableClass.Type? {
-        return subject as? SpyableClass.Type
+    var subjectAsClassSpyable: ClassSpyable.Type? {
+        return subject as? ClassSpyable.Type
     }
 
 }

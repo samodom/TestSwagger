@@ -13,7 +13,7 @@ import TestSwagger
 
 /// Controller
 
-extension XCTestCase: SpyableObject {
+extension XCTestCase: ObjectSpyable {
 
     enum RecordFailureSpyController: SpyController {
         public static let rootSpyableClass: AnyClass = XCTestCase.self
