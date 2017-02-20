@@ -21,30 +21,6 @@ public enum SpyVector {
 }
 
 
-/// Convenience type used to create method surrogates for spying.
-public struct SpyCoselectors {
-
-    let methodType: MethodType
-    let original: Selector
-    let spy: Selector
-
-    /// Creates a new spy co-selector.
-    /// - parameter methodType: The method type of the methods implemented by the selectors.
-    /// - parameter original: The selector of the original method defined by the root
-    ///                       spyable class that is spied upon.
-    /// - parameter spy: The selector of the spy method defined for the purposes of spying
-    ///                  on calls to the original method
-    public init(methodType: MethodType,
-                original: Selector,
-                spy: Selector) {
-
-        self.methodType = methodType
-        self.original = original
-        self.spy = spy
-    }
-}
-
-
 /// Testing class provided for spying on particular class to ensure that calls are made
 /// to a particular class or instance metnod.
 public final class Spy {
