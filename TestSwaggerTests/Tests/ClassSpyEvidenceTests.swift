@@ -13,7 +13,7 @@ import TestSwagger
 
 class ClassSpyEvidenceTests: SpyEvidenceTestCase {
 
-    let spyableClasses: [SpyableClass.Type] = [
+    let spyableClasses: [ClassSpyable.Type] = [
         SwiftRootSpyable.self,
         ObjectiveCRootSpyable.self
     ]

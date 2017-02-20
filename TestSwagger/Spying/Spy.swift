@@ -21,45 +21,21 @@ public enum SpyVector {
 }
 
 
-/// Convenience type used to create method surrogates for spying.
-public struct SpyCoselectors {
-
-    let methodType: MethodType
-    let original: Selector
-    let spy: Selector
-
-    /// Creates a new spy co-selector.
-    /// - parameter methodType: The method type of the methods implemented by the selectors.
-    /// - parameter original: The selector of the original method defined by the root
-    ///                       spyable class that is spied upon.
-    /// - parameter spy: The selector of the spy method defined for the purposes of spying
-    ///                  on calls to the original method
-    public init(methodType: MethodType,
-                original: Selector,
-                spy: Selector) {
-
-        self.methodType = methodType
-        self.original = original
-        self.spy = spy
-    }
-}
-
-
 /// Testing class provided for spying on particular class to ensure that calls are made
 /// to a particular class or instance metnod.
 public final class Spy {
 
     let subject: Any
-    fileprivate let surrogate: MethodSurrogate
+    fileprivate let surrogates: [MethodSurrogate]
     let evidence: Set<SpyEvidenceReference>
 
     init(subject: Any,
-         surrogate: MethodSurrogate,
+         surrogates: [MethodSurrogate],
          evidence: Set<SpyEvidenceReference>
         ) {
 
         self.subject = subject
-        self.surrogate = surrogate
+        self.surrogates = surrogates
         self.evidence = evidence
     }
 
@@ -71,7 +47,9 @@ public extension Spy {
     /// Used to spy on a test subject's method within a context.
     /// - parameter context: Context during which the spy will be active.
     public func spy(on context: SpyExecutionContext) {
-        surrogate.withAlternateImplementation(context: context)
+        beginSpying()
+        context()
+        endSpying()
         cleanUpEvidence()
     }
 
@@ -79,13 +57,13 @@ public extension Spy {
     /// Used to activate spying on a test subject's method.
     /// - note: Calls to this method should be balanced by a call to `endSpying`.
     public func beginSpying() {
-        surrogate.useAlternateImplementation()
+        surrogates.forEach { $0.useAlternateImplementation() }
     }
 
 
     /// Used to deactivate spying on a test subject's method.
     public func endSpying() {
-        surrogate.useOriginalImplementation()
+        surrogates.forEach { $0.useOriginalImplementation() }
         cleanUpEvidence()
     }
 
@@ -95,22 +73,20 @@ public extension Spy {
 fileprivate extension Spy {
 
     func cleanUpEvidence() {
-        if let spyableObject = subjectAsSpyableObject {
+        if let spyableObject = subjectAsObjectSpyable {
             evidence.forEach(spyableObject.removeEvidence(with:))
         }
-        else if let spyableClass = subjectAsSpyableClass {
+        else if let spyableClass = subjectAsClassSpyable {
             evidence.forEach(spyableClass.removeEvidence(with:))
         }
-            // TODO: REMOVE!!!
-        else { fatalError() }
     }
 
-    var subjectAsSpyableObject: SpyableObject? {
-        return subject as? SpyableObject
+    var subjectAsObjectSpyable: ObjectSpyable? {
+        return subject as? ObjectSpyable
     }
 
-    var subjectAsSpyableClass: SpyableClass.Type? {
-        return subject as? SpyableClass.Type
+    var subjectAsClassSpyable: ClassSpyable.Type? {
+        return subject as? ClassSpyable.Type
     }
 
 }

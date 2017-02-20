@@ -10,17 +10,15 @@ import TestSwagger
 import SampleTypes
 import FoundationSwagger
 
-extension ObjectiveCRootSpyable: SampleSpyableObject, SampleSpyableClass {}
+extension ObjectiveCRootSpyable: SampleObjectSpyable, SampleClassSpyable {}
 
 
-// MARK: Spy controllers
-
-public extension ObjectiveCRootSpyable {
+public extension ObjectiveCRootSpyable { // MARK: Spy controllers
 
     public enum DirectClassSpyController: CustomForwardableSpyController {
         public static let rootSpyableClass: AnyClass = ObjectiveCRootSpyable.self
         public static let vector = SpyVector.direct
-        public static let coselectors = SampleSpyCoselectors.directClassSpy
+        public static let coselectors: Set<SpyCoselectors> = [SampleSpyCoselectors.directClassSpy]
         public static let evidence: Set<SpyEvidenceReference> = SampleReferences
         public static var forwardingBehavior = MethodForwardingBehavior.never
     }
@@ -28,7 +26,7 @@ public extension ObjectiveCRootSpyable {
     public enum DirectObjectSpyController: CustomForwardableSpyController {
         public static let rootSpyableClass: AnyClass = ObjectiveCRootSpyable.self
         public static let vector = SpyVector.direct
-        public static let coselectors = SampleSpyCoselectors.directObjectSpy
+        public static let coselectors: Set<SpyCoselectors> = [SampleSpyCoselectors.directObjectSpy]
         public static let evidence: Set<SpyEvidenceReference> = SampleReferences
         public static var forwardingBehavior = MethodForwardingBehavior.never
     }
@@ -36,7 +34,7 @@ public extension ObjectiveCRootSpyable {
     public enum IndirectClassSpyController: CustomForwardableSpyController {
         public static let rootSpyableClass: AnyClass = ObjectiveCRootSpyable.self
         public static let vector = SpyVector.indirect
-        public static let coselectors = SampleSpyCoselectors.indirectClassSpy
+        public static let coselectors: Set<SpyCoselectors> = [SampleSpyCoselectors.indirectClassSpy]
         public static let evidence: Set<SpyEvidenceReference> = SampleReferences
         public static var forwardingBehavior = MethodForwardingBehavior.never
     }
@@ -44,7 +42,7 @@ public extension ObjectiveCRootSpyable {
     public enum IndirectObjectSpyController: CustomForwardableSpyController {
         public static let rootSpyableClass: AnyClass = ObjectiveCRootSpyable.self
         public static let vector = SpyVector.indirect
-        public static let coselectors = SampleSpyCoselectors.indirectObjectSpy
+        public static let coselectors: Set<SpyCoselectors> = [SampleSpyCoselectors.indirectObjectSpy]
         public static let evidence: Set<SpyEvidenceReference> = SampleReferences
         public static var forwardingBehavior = MethodForwardingBehavior.never
     }
@@ -52,9 +50,7 @@ public extension ObjectiveCRootSpyable {
 }
 
 
-// MARK: Selectors
-
-extension ObjectiveCRootSpyable {
+extension ObjectiveCRootSpyable { // MARK: Selectors
 
     enum SampleMethodSelectors {
         static let originalClassMethod = #selector(ObjectiveCRootSpyable.sampleClassMethod(_:))
@@ -97,9 +93,7 @@ extension ObjectiveCRootSpyable {
 }
 
 
-// MARK: Spy methods
-
-extension ObjectiveCRootSpyable {
+extension ObjectiveCRootSpyable { // MARK: Spy methods
 
     dynamic class func directSpy_sampleClassMethod(_ input: String) -> Int {
         sampleClassMethodCalledAssociated = true
