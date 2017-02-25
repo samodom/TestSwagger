@@ -93,15 +93,15 @@ class SpyControllerTestCase: XCTestCase {
 fileprivate extension SpyControllerTestCase {
 
     func setSpyMethodCallForwarding(to shouldForward: Bool) {
-        SwiftRootSpyable.DirectClassSpyController.forwardingBehavior = .custom(shouldForward)
-        SwiftRootSpyable.DirectObjectSpyController.forwardingBehavior = .custom(shouldForward)
-        SwiftRootSpyable.IndirectClassSpyController.forwardingBehavior = .custom(shouldForward)
-        SwiftRootSpyable.IndirectObjectSpyController.forwardingBehavior = .custom(shouldForward)
+        SwiftRootSpyable.DirectClassSpyController.forwardsInvocations = shouldForward
+        SwiftRootSpyable.DirectObjectSpyController.forwardsInvocations = shouldForward
+        SwiftRootSpyable.IndirectClassSpyController.forwardsInvocations = shouldForward
+        SwiftRootSpyable.IndirectObjectSpyController.forwardsInvocations = shouldForward
 
-        ObjectiveCRootSpyable.DirectClassSpyController.forwardingBehavior = .custom(shouldForward)
-        ObjectiveCRootSpyable.DirectObjectSpyController.forwardingBehavior = .custom(shouldForward)
-        ObjectiveCRootSpyable.IndirectClassSpyController.forwardingBehavior = .custom(shouldForward)
-        ObjectiveCRootSpyable.IndirectObjectSpyController.forwardingBehavior = .custom(shouldForward)
+        ObjectiveCRootSpyable.DirectClassSpyController.forwardsInvocations = shouldForward
+        ObjectiveCRootSpyable.DirectObjectSpyController.forwardsInvocations = shouldForward
+        ObjectiveCRootSpyable.IndirectClassSpyController.forwardsInvocations = shouldForward
+        ObjectiveCRootSpyable.IndirectObjectSpyController.forwardsInvocations = shouldForward
     }
 
     func setSpySuperclassMethodCalling(to shouldCall: Bool) {
@@ -115,7 +115,7 @@ fileprivate extension SpyControllerTestCase {
     }
 
     func createSpyExpectations() {
-        setSpyMethodCallForwarding(to: currentVariant.forwardsCalls)
+        setSpyMethodCallForwarding(to: currentVariant.forwardsInvocations)
 
         switch (currentVariant.language, currentVariant.vector, currentVariant.methodType) {
         case (.swift, .direct, .`class`):
@@ -193,7 +193,7 @@ fileprivate extension SpyControllerTestCase {
 
     private func methodSwizzlingErrorMessage(realOutput: Int) -> String {
         let spyClassName = currentVariant.controller.rootSpyableClass.debugDescription()
-        let methodOrigin = currentVariant.forwardsCalls ? "original" : "spy"
+        let methodOrigin = currentVariant.forwardsInvocations ? "original" : "spy"
 
         return "The \(methodOrigin) method was not invoked: \(realOutput) != \(currentExpectation.output) for class \(spyClassName)"
     }
