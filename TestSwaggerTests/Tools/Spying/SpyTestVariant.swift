@@ -20,7 +20,7 @@ enum ProgrammingLanguage {
 struct SpyTestVariant {
 
     let inContext: Bool
-    let forwardsCalls: Bool
+    let forwardsInvocations: Bool
     let language: ProgrammingLanguage
     let vector: SpyVector
     let methodType: MethodType
@@ -31,13 +31,13 @@ extension SpyTestVariant {
 
     static var allVariants: [SpyTestVariant] {
         let variants = [true, false].flatMap { inContext in
-            return [true, false].flatMap { forwardsCalls in
+            return [true, false].flatMap { forwardsInvocations in
                 [ProgrammingLanguage.swift, .objectiveC].flatMap { language in
                     [SpyVector.direct, .indirect].flatMap { vector in
                         [MethodType.instance, .`class`].map { methodType in
                             SpyTestVariant(
                                 inContext: inContext,
-                                forwardsCalls: forwardsCalls,
+                                forwardsInvocations: forwardsInvocations,
                                 language: language,
                                 vector: vector,
                                 methodType: methodType
@@ -81,7 +81,7 @@ extension SpyTestVariant {
     }
 
     var unforwardedOutputValue: Int? {
-        return forwardsCalls ? nil : WellKnownMethodReturnValues.commonSpyValue.rawValue
+        return forwardsInvocations ? nil : WellKnownMethodReturnValues.commonSpyValue.rawValue
     }
 
 }
@@ -93,7 +93,7 @@ extension SpyTestVariant: CustomStringConvertible {
         return "\tlanguage = \(language)\n"
             .appending("\tvector = \(vector)\n")
             .appending("\tmethod type = \(methodType)\n")
-            .appending("\tforwarding? \(forwardsCalls)\n")
+            .appending("\tforwarding? \(forwardsInvocations)\n")
             .appending("\tin context? \(inContext)")
     }
     

@@ -211,16 +211,4 @@ Spies provide two options for executing test code while spying.  The first is wi
 
 ### Method forwarding
 
-Spy controllers are responsible for providing the expected method forwarding behavior in its spy methods.  Controllers may be designed to always forward calls, never forward calls or permit user customization.  The `methodForwardingBehavior` property on `SpyController` is a value of the type `MethodForwardingBehavior`.
-
-```swift
-public enum MethodForwardingBehavior {
-    case always
-    case never
-    case custom(Bool)
-
-    public var forwards: Bool  /// read-only
-}
-```
-
-In order to allow user-defined method-forwarding behavior, the `CustomForwardableSpyController` protocol extends `SpyController` with a mutable behavior property.
+Spy controllers are responsible for providing the expected method forwarding behavior in their spy methods.  Controllers may be designed to always forward calls, never forward calls or permit user customization.  The `forwardsInvocations` property on `SpyController` is a boolean value that is immutable per the protocol.  Any implementing controller may make this property mutable.

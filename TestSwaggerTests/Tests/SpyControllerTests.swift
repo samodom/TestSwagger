@@ -115,7 +115,7 @@ extension SwiftRootSpyable {
         static let coselectors = SwiftRootSpyable.DirectObjectSpyController.coselectors
             .union([additionalSpyMethodCoselectors])
         static let evidence = SwiftRootSpyable.DirectObjectSpyController.evidence.union([additionalSpyMethodReference])
-        static let forwardingBehavior = MethodForwardingBehavior.never
+        static let forwardsInvocations = false
     }
 
     var additionalInstanceMethodSpyCalled: Bool {
