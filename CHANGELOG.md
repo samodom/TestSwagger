@@ -1,6 +1,9 @@
 TestSwagger Changelog
 =====================
 
+### v0.1.5 (April 24, 2017)
+ - Removed `UUIDKeyString` function (moved to FoundationSwagger)
+
 ### v0.1.4 (February 20, 2017)
  - Renamed `SpyableObject` to `ObjectSpyable`
  - Renamed `SpyableClass` to `ClassSpyable`
