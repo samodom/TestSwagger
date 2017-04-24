@@ -69,18 +69,6 @@ Evidence of calls being made to methods can be captured by using *object associa
 > Direct-invocation spying on `MyClass.someInstanceMethod(input:)` would suggest the introduction of two new instance properties on `MyClass` such as `someInstanceMethodCalled: Bool` and `someInstanceMethodInput: InputType?` which would be accessed using the subject instance.  The boolean flag indicating whether the method has been called would be stored on the subject using object association.  The input to the method would be stored using object association or file persistence, depending on the type and size of the input.  The same technique is used for class methods.
 
 
-#### Unique association keys
-
-In order to allocate memory with unique content that can be used as an object association key, the `UUIDKeyString` function is provided.  Keys can then be created by a simple wrapping call to the `ObjectAssociationKey` initializer.
-
-> Example:
->
-> ```swift
-> private let myKeyString = UUIDKeyString()
-> let myKey = ObjectAssociationKey(myKeyString)
-> ```
-
-
 #### Persisting evidence to disk
 
 Evidence stored to file is associated with a simple file path.

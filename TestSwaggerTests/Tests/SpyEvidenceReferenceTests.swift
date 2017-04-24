@@ -32,17 +32,6 @@ class SpyEvidenceReferenceTests: XCTestCase {
         alternateSerialization = .serialization(path: alternatePath)
     }
 
-    func testUUIDKeyStringKeyUniqueness() {
-        let stringKeys = (1...100).map { _ in
-            UUIDKeyString()
-        }
-
-        let keyPointers = stringKeys.map { ObjectAssociationKey($0) }
-        let uniquePointers = Set(keyPointers)
-
-        XCTAssertEqual(uniquePointers.count, keyPointers.count, "Each pointer should be unique")
-    }
-
     func testSpyEvidenceReferenceCases() {
         switch sampleAssociation! {
         case .association(_),

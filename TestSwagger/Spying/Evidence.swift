@@ -8,13 +8,6 @@
 
 import FoundationSwagger
 
-/// Function that provides unique content that can be used to create object association keys.
-/// - returns: A C-string representing a universally unique identifier.
-public func UUIDKeyString() -> [CChar] {
-    return NSUUID().uuidString.cString(using: .utf8)!
-}
-
-
 public extension ObjectSpyable {
 
     /// Saves spy evidence.
