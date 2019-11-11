@@ -1,5 +1,4 @@
-TestSwagger
-===========
+# TestSwagger - DEPRECATED
 
 Testing tools for creating and using test doubles
 
